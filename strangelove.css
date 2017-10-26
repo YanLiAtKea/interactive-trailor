@@ -1,0 +1,154 @@
+* {
+    margin:  0;
+    padding: 0;
+    font-family: monospace;
+}
+/* plane */
+div.scene {
+    width: 100vw;
+    height 63vw;
+    overflow: hidden;
+}
+div.sky {
+    width: 200vw;
+    height: 63vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(images/sky.jpg);
+}
+div.timer {
+    height: 3em;
+    width: 100px;
+    position: absolute;
+    top: 1em;
+    right: 3.5em;
+    border: 1px solid white;
+    text-align: center;
+    padding-top: .7em;
+}
+p.hintPlane {
+    color: black;
+    position: absolute;
+    top: 2em;
+    left: 23vw;
+    font-size: 2em;
+}
+div.plane {
+    width: 70px;
+    height: 30px;
+    position: absolute;
+}
+div.plane3, div.plane4 {
+    transform: rotateY(180deg);
+}
+div.cockpit {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+}
+div.cockpit img {
+    width: 100%;
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+}
+div.cockpit img.shake {
+    animation: shake .67s forwards;
+}
+@keyframes shake {
+    0%, 18%, 36%, 54%, 77%, 97% {
+        transform: translate(0, .3vh);
+    }
+    9%, 27%, 45%, 65%, 86%, 100% {
+        transform: translate(0, 0);
+    }
+}
+/* static */
+div.staticWrapper {
+    background-color: black;
+}
+@keyframes enlarge {
+    to {
+        transform: scale(7);
+        transform-origin: top;
+    }
+}
+div.static {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('images/static.jpg');
+    background-size: cover;
+}
+div.static.turnBlack {
+    animation: turnBlack .25s forwards;
+}
+@keyframes turnBlack {
+    to {
+        transform: rotateX(90deg);
+        transform-origin: center;
+    }
+}
+div.staticWrapper p {
+    width: 70vw;
+    display: none;
+    color: white;
+    border-right: 1px solid white;
+    font-size: 1.3em;
+}
+div.staticWrapper p.type {
+    overflow: hidden;
+    white-space: nowrap;
+}
+div.staticWrapper p.staticPlaneP1.type {
+    display: inherit;
+    animation: timeTypingEffect1 7s steps(76);
+    width: 76ch;
+}
+@keyframes timeTypingEffect1 {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 76ch;
+    }
+}
+div.staticWrapper p.staticPlaneP2.type {
+    display: inherit;
+    animation: timeTypingEffect2 1s steps(4);
+    width: 4ch;
+}
+@keyframes timeTypingEffect2 {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 4ch;
+    }
+}
+div.staticWrapper p.staticPlaneP3.type {
+    display: inherit;
+    animation: timeTypingEffect3 3s steps(34);
+    width: 34ch;
+}
+@keyframes timeTypingEffect3 {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 34ch;
+    }
+}
+div.staticWrapper p.staticPlaneP4.type {
+    display: inherit;
+    animation: timeTypingEffect4 6s steps(69);
+    width: 69ch;
+}
+@keyframes timeTypingEffect4 {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 69ch;
+    }
+}

@@ -69,8 +69,6 @@ window.onload = function(){
                 function redirectToStatic(){
                     window.location.replace("http://127.0.0.1:51156/static-plane.html"); // !! need to change to http
                 }
-// static screen + white noise
-// 1s later screen shows: are you thinking that you successfully stopped them all and saved the world? Well, if only things were this simple. Watch the movie and find out more
             }
             setTimeout(hitDelay, 700);
             function hitDelay(){
@@ -78,7 +76,6 @@ window.onload = function(){
                 explosionAudio.play();
                 planeImg.style.height = "0";
             }
-        //    audio.play();
         //    smokeAnimation.display: getting bigger
 
         }
