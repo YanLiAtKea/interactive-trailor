@@ -4,7 +4,7 @@
 }
 div.sky {
     width: 200vw;
-    height: 90vh;
+    height: 83vh;
     position: relative;
     background-image: url(images/sky.jpg);
 }
@@ -26,4 +26,15 @@ div.cockpit img {
     pointer-events: none;
     position: relative;
     z-index: 1;
+}
+div.cockpit img.shake {
+    animation: shake .67s forwards;
+}
+@keyframes shake {
+    0%, 18%, 36%, 54%, 77%, 97% {
+        transform: translate(0, .3vh);
+    }
+    9%, 27%, 45%, 65%, 86% {
+        transform: translate(0, 0);
+    }
 }
