@@ -4,15 +4,17 @@
 }
 div.sky {
     width: 200vw;
-    height: 70vh;
+    height: 90vh;
     position: relative;
-
+    background-image: url(images/sky.jpg);
 }
 div.plane {
-    width: 50px;
-    height: 20px;
-    background: black;
+    width: 70px;
+    height: 30px;
     position: absolute;
+}
+div.plane3, div.plane4 {
+    transform: rotateY(180deg);
 }
 div.cockpit {
     width: 100vw;

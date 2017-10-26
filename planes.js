@@ -29,7 +29,8 @@ planes.forEach(gotHit);
 function gotHit(plane){
     plane.addEventListener('click', hit);
     function hit(){
-        plane.style.height = "0";
+        let planeImg = plane.children[0];
+        planeImg.style.height = "0";
         console.log('gotHit');
         planeNr--;
         if (planeNr == 3){
