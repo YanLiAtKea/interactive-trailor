@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+div.us {
+    width: 30vw;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    background: grey;
+}
+div.russia {
+    width: 30vw;
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    background: red;
+    opacity: .5;
+}
+div.conversation {
+    width: 40vw;
+    height: 100vh;
+    position: fixed;
+    left: 30vw;
+    height: 100vh;
+    background: black;
+}
+div.finishedConversation {
+    height: 70vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+div.choices {
+    height: 30vh;
+    width: 40vw;
+    position: absolute;
+    bottom: 0;
+}
+div.script {
+    width: 100%;
+    height: auto;
+}
+p {
+    color: white;
+    position: absolute;
+    left: 1em;
+}
+p:last-of-type {
+    top: 1em;
+    right: 1em;
+}
+p:nth-of-type(2), p:nth-of-type(3), p:nth-of-type(4) {
+    height: 8vh;
+    width: 70%;
+    margin-left: 13%;
+}
+p:nth-of-type(2) {
+    top: 3vh;
+}
+p:nth-of-type(3) {
+    top: 12vh;
+}
+p:nth-of-type(4) {
+    top: 21vh;
+}
