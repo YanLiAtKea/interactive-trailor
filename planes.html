@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,26 @@
 </head>
 
 <body>
-  <audio id="gunfire">
+    <audio id="gunfire">
         <source src="audios/shot-short.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="explosion">
+    </audio>
+    <audio id="explosion">
         <source src="audios/explosion.mp3" type="audio/mpeg">
-  </audio>
-   <div class="sky">
-   </div>
-    <div class="cockpit">
-        <div class="plane plane1"><img src="images/plane.png" alt ="plane"></div>
-        <div class="plane plane2"><img src="images/plane.png" alt ="plane"></div>
-        <div class="plane plane3"><img src="images/plane.png" alt ="plane"></div>
-        <div class="plane plane4"><img src="images/plane.png" alt ="plane"></div>
-        <img id="cockpit" src="images/22833356_1757705737573951_1923085591_o.png">
+    </audio>
+    <div class="scene">
+        <div class="sky">
+        </div>
+        <div class="cockpit">
+            <div class="timer">Timer: 01:59:59</div>
+            <p class="hintPlane"></p>
+            <div class="plane plane1"><img src="images/plane.png" alt="plane"></div>
+            <div class="plane plane2"><img src="images/plane.png" alt="plane"></div>
+            <div class="plane plane3"><img src="images/plane.png" alt="plane"></div>
+            <div class="plane plane4"><img src="images/plane.png" alt="plane"></div>
+            <img id="cockpit" src="images/cockpit.png">
+        </div>
     </div>
     <script src="planes.js"></script>
 </body>
+
 </html>
