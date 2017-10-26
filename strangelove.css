@@ -122,6 +122,47 @@ div.characters img {
 }
 /* conversation*/
 /* code */
+div.codeScreen {
+    width: 97vw;
+    height: 97vh;
+    position: relative;
+    background-image: url(images/TV-without-button.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+div.codeScreen input {
+    border: none;
+    border-bottom: 3px solid #c0ffa1;
+    position: absolute;
+    bottom: 40vh;
+    left: 30vw;
+    background: transparent;
+    font-size: 5em;
+    color: #c0ffa1;
+    width: 200px;
+}
+div.check {
+    position: absolute;
+    bottom: 40vh;
+    right: 30vw;
+    width: 100px;
+    height: 10vh;
+    z-index: 1;
+}
+div.check img {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+div.hint {
+    position: absolute;
+    bottom: 30vh;
+    left: 30vw;
+}
+div.hint p {
+    color: #c0ffa1;
+}
 /* plane */
 div.scene {
     width: 100vw;
