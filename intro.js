@@ -24,7 +24,6 @@ function blinkPhone(){
 }
 function pickUpPhone(e) {
     if(e.keyCode == 32){
-    console.log('space');
-//        window.location.replace('http://') //!! need to change to http
+        window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/map.html');
     }
 }

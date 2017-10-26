@@ -67,7 +67,7 @@ window.onload = function(){
                 clearInterval(changePositionInt4);
                 setTimeout(redirectToStatic, 2000);
                 function redirectToStatic(){
-                    window.location.replace("http://127.0.0.1:51156/static-plane.html"); // !! need to change to http
+                    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
                 }
             }
             setTimeout(hitDelay, 700);

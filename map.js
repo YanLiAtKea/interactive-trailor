@@ -10,11 +10,11 @@ function redirectToPresident(){
     window.location.replace('');
 }
 function redirectToCodeGuy(){
-    window.location.replace('');
+    window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/code.html');
 }
 function redirectToPilot(){
     window.location.replace('');
 }
 function redirectToPlane(){
-    window.location.replace('');
+    window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/planes.html');
 }
