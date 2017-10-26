@@ -2,7 +2,126 @@
     margin:  0;
     padding: 0;
     font-family: monospace;
+    box-sizing: border-box;
 }
+/* intro */
+div.roundTable {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-image: url(images/main-roundTable.jpg);
+    background-size: cover;
+}
+div.introDiv {
+    height: 5em;
+    position: absolute;
+    bottom: 0;
+    left: 2em;
+}
+div.introDiv p{
+    color: white;
+    display: none;
+    font-size: 1.2em;
+}
+div.introDiv p.type{
+    overflow: hidden;
+    white-space: nowrap;
+    display: inherit;
+}
+div.introDiv p.introP1.type {
+    display: inherit;
+    animation: introP1TypingEffect 1s steps(6);
+    width: 6ch;
+}
+@keyframes introP1TypingEffect {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 6ch;
+    }
+}
+div.introDiv p.introP2.type {
+    display: inherit;
+    animation: introP2TypingEffect 3s steps(28);
+    width: 28ch;
+}
+@keyframes introP2TypingEffect {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 28ch;
+    }
+}
+img.phone {
+    position: absolute;
+    width: 30px;
+    bottom: 119px;
+    left: 366px;
+    opacity: 0;
+}
+img.phone.blink {
+    animation: blinkPhone 1.5s infinite;
+}
+@keyframes blinkPhone {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* map*/
+div.map {
+    width: 100vw;
+    height: 100vh;
+    border: 3px solid black;
+    position: relative;
+}
+/* characters*/
+div.characters {
+    height: 50vh;
+    width: 20vw;
+    background-color: darkgray;
+    position: absolute;
+    top: 20vh;
+}
+div.character1 {
+    left: 4vw;
+}
+div.character2 {
+    left: 28vw;
+}
+div.character3 {
+    left: 52vw;
+}
+div.character1:hover, div.character2:hover, div.character3:hover {
+    width: 80vw;
+    left: 4vw;
+    z-index: 1;
+}
+div.character1:hover img, div.character2:hover img, div.character3:hover img, div.character4:hover img {
+    width: 40%;
+}
+div.character3:hover img {
+    width: 40%;
+}
+div.character4 {
+    background-color: darkred;
+    right: 4vw;
+    opacity: .9;
+}
+div.character4:hover {
+    width: 80vw;
+    right: 4vw;
+}
+div.characters img {
+    width: 110%;
+}
+/* conversation*/
+/* code */
 /* plane */
 div.scene {
     width: 100vw;
@@ -90,7 +209,6 @@ div.static.turnBlack {
     }
 }
 div.staticWrapper p {
-    width: 70vw;
     display: none;
     color: white;
     border-right: 1px solid white;
@@ -102,10 +220,10 @@ div.staticWrapper p.type {
 }
 div.staticWrapper p.staticPlaneP1.type {
     display: inherit;
-    animation: timeTypingEffect1 7s steps(76);
+    animation: staticPlaneP1TypingEffect 7s steps(76);
     width: 76ch;
 }
-@keyframes timeTypingEffect1 {
+@keyframes staticPlaneP1TypingEffect {
     0% {
         width: 0ch;
     }
@@ -115,10 +233,10 @@ div.staticWrapper p.staticPlaneP1.type {
 }
 div.staticWrapper p.staticPlaneP2.type {
     display: inherit;
-    animation: timeTypingEffect2 1s steps(4);
+    animation: staticPlaneP2TypingEffect 1s steps(4);
     width: 4ch;
 }
-@keyframes timeTypingEffect2 {
+@keyframes staticPlaneP2TypingEffect {
     0% {
         width: 0ch;
     }
@@ -128,10 +246,10 @@ div.staticWrapper p.staticPlaneP2.type {
 }
 div.staticWrapper p.staticPlaneP3.type {
     display: inherit;
-    animation: timeTypingEffect3 3s steps(34);
+    animation: staticPlaneP3TypingEffect 3s steps(34);
     width: 34ch;
 }
-@keyframes timeTypingEffect3 {
+@keyframes staticPlaneP3TypingEffect {
     0% {
         width: 0ch;
     }
@@ -141,10 +259,10 @@ div.staticWrapper p.staticPlaneP3.type {
 }
 div.staticWrapper p.staticPlaneP4.type {
     display: inherit;
-    animation: timeTypingEffect4 6s steps(69);
+    animation: staticPlaneP4TypingEffect 6s steps(69);
     width: 69ch;
 }
-@keyframes timeTypingEffect4 {
+@keyframes staticPlaneP4TypingEffect {
     0% {
         width: 0ch;
     }
