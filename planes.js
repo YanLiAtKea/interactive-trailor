@@ -14,6 +14,9 @@ let changePositionInt2; // need to set these here to avoid "undefined" when clea
 let changePositionInt3;
 let changePositionInt4;
 
+function hintGone(){
+    hintPlane.textContent = "";
+}
 function changePosition(){
     let X1 = Math.random()*190;
     let Y1 = Math.random()*61;
@@ -53,16 +56,19 @@ window.onload = function(){
             planeNr--;
             if (planeNr == 3){
                 clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
-                changePositionInt2 = setInterval(changePosition, 1300); // need to give a new id so can be cleared later
+                changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
                 hintPlane.textContent = '1 down, 3 to go';
+                setTimeout(hintGone, 2000);
             } else if (planeNr == 2){
                 clearInterval(changePositionInt2);
-                changePositionInt3 = setInterval(changePosition, 1300);
+                changePositionInt3 = setInterval(changePosition, 1000);
                 hintPlane.textContent = 'half way done, 2 to go';
+                setTimeout(hintGone, 2000);
             } else if (planeNr == 1){
                 clearInterval(changePositionInt3);
-                changePositionint4 = setInterval(changePosition, 1300);
+                changePositionint4 = setInterval(changePosition, 700);
                 hintPlane.textContent = '3 down, finish the last one';
+                setTimeout(hintGone, 2000);
             }  else {
                 clearInterval(changePositionInt4);
                 setTimeout(redirectToStatic, 2000);

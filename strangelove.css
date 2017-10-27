@@ -4,6 +4,10 @@
     font-family: monospace;
     box-sizing: border-box;
 }
+a.backToCharacter {
+    position: fixed;
+    z-index: 200;
+}
 /* intro */
 div.roundTable {
     position: relative;
