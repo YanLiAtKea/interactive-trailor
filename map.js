@@ -7,7 +7,7 @@ codeguy.addEventListener('click', redirectToCodeGuy);
 pilot.addEventListener('click', redirectToPilot);
 russia.addEventListener('click', redirectToPlane);
 function redirectToPresident(){
-    window.location.replace('');
+    window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/conversation.html');
 }
 function redirectToCodeGuy(){
     window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/code.html');

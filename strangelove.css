@@ -72,7 +72,6 @@ img.phone.blink {
         opacity: 1;
     }
 }
-
 /* map*/
 div.map {
     width: 100vw;
@@ -121,6 +120,85 @@ div.characters img {
     width: 110%;
 }
 /* conversation*/
+div.us {
+    width: 40vw;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+div.us img {
+    height: 70vh;
+    filter: grayscale(100);
+}
+div.russia {
+    width: 20vw;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    background: red;
+}
+div.russiaFlag img {
+    height: 60vh;
+    position: absolute;
+    left: 0;
+    filter: grayscale(100);
+}
+div.russiaP img {
+    height: 65vh;
+}
+div.conversation {
+    width: 40vw;
+    height: 100vh;
+    position: fixed;
+    left: 40vw;
+    height: 100vh;
+    background: black;
+}
+div.usP {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+div.usP img{
+    width: 50vw;
+    height: 61vh;
+}
+div.russiaP {
+    height: 60vh;
+    width: 30vw;
+    position: absolute;
+    bottom: 10vh;
+}
+div.finishedConversation {
+    height: 63vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    border: 2px dotted white;
+}
+div.finishedConversation p {
+    color: gray;
+}
+div.choices {
+    height: 37vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+div.choices p {
+    color: white;
+    font-size: .9em;
+}
+div.script {
+    width: 100%;
+    height: 100%;
+}
+div.script p {
+    color: white;
+    left: 1em;
+}
 /* code */
 div.codeScreen {
     width: 97vw;
