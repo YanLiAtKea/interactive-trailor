@@ -1,3 +1,4 @@
+let planAudio = document.querySelector('audio#planes');
 let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
 let timeToDisplay = document.querySelector('.timerDiv');
@@ -5,10 +6,14 @@ let startTime = [0, 0, 0, 0];
 let sky = document.querySelector('.sky');
 let hintPlane = document.querySelector('.hintPlane');
 let planes = document.querySelectorAll('.plane');
+let extraPlanes = document.querySelectorAll('.planeExtra');
 let plane1 = document.querySelector('.plane1');
 let plane2 = document.querySelector('.plane2');
 let plane3 = document.querySelector('.plane3');
 let plane4 = document.querySelector('.plane4');
+let plane5 = document.querySelector('.plane5');
+let plane6 = document.querySelector('.plane6');
+let plane7 = document.querySelector('.plane7');
 let planeNr = 4;
 let cockpit = document.querySelector('img#cockpit');
 // change position of the planes
@@ -16,15 +21,20 @@ let changePositionInt1 = setInterval(changePosition, 1700);
 let changePositionInt2; // need to set these here to avoid "undefined" when clearInterval later in different scopes
 let changePositionInt3;
 let changePositionInt4;
-
+// redirect in case of win
+function redirectToStatic(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+}
+// hide plane hint
 function hintGone(){
     hintPlane.textContent = "";
 }
+// change planes position
 function changePosition(){
     let X1 = Math.random()*190;
     let Y1 = Math.random()*61;
     let size1 = Math.random();
-    if (size1>.5){
+    if (size1 >.4){
         plane1.style.transform = "scale(" + size1+ ")";
     }
     plane1.style.left = X1 +"vw";
@@ -32,7 +42,7 @@ function changePosition(){
     let X2 = Math.random()*190;
     let Y2 = Math.random()*61;
     let size2 = Math.random();
-    if (size2>.5){
+    if (size2 >.4){
         plane2.style.transform = "scale(" + size2+ ")";
     }
     plane2.style.left = X2 +"vw";
@@ -40,7 +50,7 @@ function changePosition(){
     let X3 = Math.random()*190;
     let Y3 = Math.random()*61;
     let size3 = Math.random();
-    if (size3>.5){
+    if (size3 >.4){
         plane3.style.transform = "scale(" + size3+ ") rotateY(180deg)";
     }
     plane3.style.left = X3 +"vw";
@@ -48,11 +58,35 @@ function changePosition(){
     let X4 = Math.random()*190;
     let Y4 = Math.random()*61;
     let size4 = Math.random();
-    if (size4>.5){
+    if (size4 >.4){
         plane4.style.transform = "scale(" + size4+ ") rotateY(180deg)";
     }
     plane4.style.left = X4 +"vw";
     plane4.style.top = Y4 +"vw";
+    let X5 = Math.random()*190;
+    let Y5 = Math.random()*61;
+    let size5 = Math.random();
+    if (.8 > size5 > .3){
+        plane5.style.transform = "scale(" + size5+ ")";
+    }
+    plane5.style.left = X5 +"vw";
+    plane5.style.top = Y5 +"vw";
+    let X6 = Math.random()*190;
+    let Y6 = Math.random()*61;
+    let size6 = Math.random();
+    if (.8 >size6 >.3){
+        plane6.style.transform = "scale(" + size6+ ")";
+    }
+    plane6.style.left = X6 +"vw";
+    plane6.style.top = Y6 +"vw";
+    let X7 = Math.random()*190;
+    let Y7 = Math.random()*61;
+    let size7 = Math.random();
+    if (.8 >size7 >.3){
+        plane7.style.transform = "scale(" + size7+ ") rotateY(180deg)";
+    }
+    plane7.style.left = X7 +"vw";
+    plane7.style.top = Y7 +"vw";
 }
 
 window.onload = function(){
@@ -77,6 +111,9 @@ window.onload = function(){
             startTime[2] = 99 - mmsPast;
             if (startTime[0] == 0){
                 timeToDisplay.classList.add('flash');
+            }
+            if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
+                planAudio.pause();
             }
         }
     }
@@ -172,7 +209,7 @@ window.onload = function(){
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
     changePositionInt1; // start interval
     planes.forEach(checkAllPlanes);
-    function checkAllPlanes(plane){
+    function checkAllPlanes(plane) {
         plane.addEventListener('click', hit);
         function hit(){
             setTimeout(hitDelay, 700); // need delay cuz plane is in distance, need some time for the bullet to reach
@@ -196,14 +233,27 @@ window.onload = function(){
                     changePositionint4 = setInterval(changePosition, 700);
                     hintPlane.textContent = '3 down, finish the last one';
                     setTimeout(hintGone, 2000);
-                }  else {
-                    clearInterval(changePositionInt4);
-                    setTimeout(redirectToStatic, 700);
-                    function redirectToStatic(){
-                        window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+                }  else if (planeNr ==0 && timeToDisplay.innerHTML[1] != 0) { // finished too fast, add extra planes
+                    hintPlane.textContent = '4 down! WELL DONE! But 3 backup planes just joined the battle!';
+                    setTimeout(hintGone, 3000);
+                    extraPlanes.forEach(showExtra);
+                    function showExtra(extraPlane){
+                        extraPlane.style.display = "inherit";
                     }
+                } else if (planeNr ==0 && timeToDisplay.innerHTML[1] == 0){
+                    setTimeout(redirectToStatic, 500);
+                } else if (planeNr == -1){
+                    hintPlane.textContent = 'bonus 1 !';
+                    setTimeout(hintGone, 2000);
+                } else if (planeNr == -2){
+                    hintPlane.textContent = 'bonus 2 !';
+                    setTimeout(hintGone, 2000);
+                }else if (planeNr == -3) {
+                    hintPlane.textContent = 'bonus 3 !';
+                    setTimeout(redirectToStatic, 500);
                 }
             }
         }
     }
 }
+

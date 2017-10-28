@@ -295,6 +295,9 @@ div.plane {
     position: absolute;
     cursor: crosshair;
 }
+div.planeExtra {
+    display: none;
+}
 div.cockpit {
     width: 100vw;
     height: 100vh;
