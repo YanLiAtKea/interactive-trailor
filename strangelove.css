@@ -258,15 +258,29 @@ div.scene img.sky {
     left: 0;
     top: 0;
 }
-div.timer {
-    height: 3em;
-    width: 100px;
+div.timerDiv {
+    height: 2em;
+    width: 9em;
     position: absolute;
-    top: 1em;
-    right: 3.5em;
-    border: 1px solid white;
+    top: 0;
+    right: 0;
     text-align: center;
-    padding-top: .7em;
+    padding-top: .5em;
+    color: white;
+    font-size: 2.5em;
+}
+div.timerDiv.flash {
+    animation: timerFlash 1s infinite;
+}
+@keyframes timerFlash {
+    0%, 100% {
+        background-color: transparent;
+        opacity: 0;
+    }
+    50% {
+        background-color: red;
+        opacity: .5;
+    }
 }
 p.hintPlane {
     color: black;

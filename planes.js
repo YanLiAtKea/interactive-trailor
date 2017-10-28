@@ -1,5 +1,7 @@
 let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
+let timeToDisplay = document.querySelector('.timerDiv');
+let startTime = [0, 0, 0, 0];
 let sky = document.querySelector('.sky');
 let hintPlane = document.querySelector('.hintPlane');
 let planes = document.querySelectorAll('.plane');
@@ -54,6 +56,30 @@ function changePosition(){
 }
 
 window.onload = function(){
+    // timer run down
+    setInterval(timer, 10);
+    function timer(){
+        function addZero(num){
+            if (num <= 9){
+                num = "0" + num;
+            }
+            return num;
+        }
+        let timer = addZero(startTime[0]) + ":" + addZero(startTime[1]) + ":" + addZero(startTime[2]);
+        timeToDisplay.textContent = timer;
+        startTime[3]++;
+        if (startTime[3] < 12000){
+            let minPast = Math.floor((startTime[3]/100)/60);
+            let secPast = Math.floor((startTime[3]/100) - minPast*60);
+            let mmsPast = Math.floor(startTime[3] - secPast * 100 - minPast * 6000);
+            startTime[0] = 1- minPast;
+            startTime[1] = 59 - secPast;
+            startTime[2] = 99 - mmsPast;
+            if (startTime[0] == 0){
+                timeToDisplay.classList.add('flash');
+            }
+        }
+    }
     // scroll the sky img based on key stroke
     window.addEventListener('keydown', moveSky);
     function moveSky(e){
