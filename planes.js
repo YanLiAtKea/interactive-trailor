@@ -131,21 +131,22 @@ window.onload = function(){
     function gunfire(){
         shotAudio.play();
         cockpit.classList.add('shake');
-        cockpit.addEventListener('animationend', removeClass);
-        function removeClass(){
+        cockpit.addEventListener('animationend', afterShake);
+        function afterShake(){
             if (cockpit.className == "tiltLeft shake") {
                 cockpit.className = "afterTiltAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
-                cockpit.removeEventListener('animationend', removeClass)
+                cockpit.removeEventListener('animationend', afterShake)
             } else {
                 cockpit.classList.remove('shake');
-                cockpit.removeEventListener('animationend', removeClass)
+                cockpit.removeEventListener('animationend', afterShake)
             }
         }
     }
+    // randomly change position of the planes
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
     changePositionInt1; // start interval
-    planes.forEach(gotHit);
-    function gotHit(plane){
+    planes.forEach(checkAllPlanes);
+    function checkAllPlanes(plane){
         plane.addEventListener('click', hit);
         function hit(){
             setTimeout(hitDelay, 700); // need delay cuz plane is in distance, need some time for the bullet to reach
@@ -177,7 +178,6 @@ window.onload = function(){
                     }
                 }
             }
-        //    smokeAnimation.display: getting bigger
         }
     }
 }
