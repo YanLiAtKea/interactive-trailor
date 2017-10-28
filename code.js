@@ -5,10 +5,6 @@ let hint = document.querySelector('.hintP');
 function updateHint(){ // set a timeout on this, so each time validation runs, hint will blink once even though the hint it self might stay the same. for user experience
     hint.style.display = "inherit";
 }
-// remove duplicated letter from the user guess, other wise "pop" would get hint as " all 3 letters are right"
-function findUnique(){
-
-}
 function validate(){
     let nr1 = document.getElementById('nr1');
     let nr2 = document.getElementById('nr2');
@@ -26,7 +22,7 @@ function validate(){
         let answer = ["P","O","E"];
         let guess = [nr1, nr2, nr3];
         let uniqueLetters = guess.filter(function(letter, index, self){
-            return index == self.indexOf(letter); // filter the duplicated letter(s), create new array of unique letters in the user guess;
+            return index == self.indexOf(letter); // filter the duplicated letter(s), create new array of unique letters in the user guess; otherwise "pop" would get hint as " all 3 letters are right"
         });
         let right = 0;
         let rightRight = 0;
