@@ -54,7 +54,7 @@ function changePosition(){
 }
 
 window.onload = function(){
-    // move the sky img based on key stroke
+    // scroll the sky img based on key stroke
     window.addEventListener('keydown', moveSky);
     function moveSky(e){
         switch (e.key) {
@@ -105,6 +105,27 @@ window.onload = function(){
             }
         }
     }
+    // tilt plane
+    setInterval(generateRandom, 3000);
+    function generateRandom(){
+        let randomNr = Math.random();
+        if (randomNr>.5){
+            if (cockpit.className !== "afterTiltAndShake" && cockpit.className !== "tiltLeft"){
+                let timeout = Math.random()*20;
+                setTimeout(tiltPlane, timeout);
+                function tiltPlane(){
+                    cockpit.className = 'tiltLeft';
+                }
+            }
+        }
+    }
+    // tilt plane back to horizontal with B key
+    window.addEventListener('keyup', tiltBack);
+    function tiltBack(e){
+        if (e.key == "b"){
+            cockpit.className = "";
+        }
+    }
     // gunfire everytime mouse is clicked
     window.addEventListener('mousedown', gunfire);
     function gunfire(){
@@ -112,7 +133,13 @@ window.onload = function(){
         cockpit.classList.add('shake');
         cockpit.addEventListener('animationend', removeClass);
         function removeClass(){
-            cockpit.classList.remove('shake')
+            if (cockpit.className == "tiltLeft shake") {
+                cockpit.className = "afterTiltAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
+                cockpit.removeEventListener('animationend', removeClass)
+            } else {
+                cockpit.classList.remove('shake');
+                cockpit.removeEventListener('animationend', removeClass)
+            }
         }
     }
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
