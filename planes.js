@@ -1,5 +1,6 @@
 let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
+let sky = document.querySelector('.sky');
 let hintPlane = document.querySelector('.hintPlane');
 let planes = document.querySelectorAll('.plane');
 let plane1 = document.querySelector('.plane1');
@@ -8,7 +9,7 @@ let plane3 = document.querySelector('.plane3');
 let plane4 = document.querySelector('.plane4');
 let planeNr = 4;
 let cockpit = document.querySelector('img#cockpit');
-
+// change position of the planes
 let changePositionInt1 = setInterval(changePosition, 1700);
 let changePositionInt2; // need to set these here to avoid "undefined" when clearInterval later in different scopes
 let changePositionInt3;
@@ -37,6 +38,57 @@ function changePosition(){
 }
 
 window.onload = function(){
+    // move the sky img based on key stroke
+    window.addEventListener('keydown', moveSky);
+    function moveSky(e){
+        switch (e.key) {
+            case "a":
+                moveLeft();
+                break;
+            case "d":
+                moveRight();
+                break;
+            case "w":
+                moveUp();
+                break;
+            case "s":
+                moveDown();
+                break;
+            default:
+        }
+        function moveLeft(){
+            let currentPositionLeft = document.scrollingElement.scrollLeft; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+            if (currentPositionLeft >= 20){
+                currentPositionLeft-=20;
+                document.scrollingElement.scrollLeft = currentPositionLeft;
+            }
+        }
+        function moveRight(){
+            let widthOfSky = parseInt(window.getComputedStyle(sky).getPropertyValue('width'));
+            let viewportWidth = window.innerWidth;
+            let currentPositionLeft = document.scrollingElement.scrollLeft; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+            if (currentPositionLeft < (widthOfSky-viewportWidth)){
+                currentPositionLeft+=20;
+                document.scrollingElement.scrollLeft = currentPositionLeft;
+            }
+        }
+        function moveUp(){
+            let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+            if (currentPositionTop >= 10){
+                currentPositionTop-=10;
+                document.scrollingElement.scrollTop = currentPositionTop;
+            }
+        }
+        function moveDown(){
+            let heightOfSky = parseInt(window.getComputedStyle(sky).getPropertyValue('height'));
+            let viewportHeight = window.innerHeight;
+            let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+            if (currentPositionTop < (heightOfSky-viewportHeight)){
+                currentPositionTop+=10;
+                document.scrollingElement.scrollTop = currentPositionTop;
+            }
+        }
+    }
     // gunfire everytime mouse is clicked
     window.addEventListener('mousedown', gunfire);
     function gunfire(){
@@ -48,7 +100,7 @@ window.onload = function(){
         }
     }
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
-    changePositionInt1;
+    changePositionInt1; // start interval
     planes.forEach(gotHit);
     function gotHit(plane){
         plane.addEventListener('click', hit);
