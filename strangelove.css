@@ -280,9 +280,6 @@ div.plane {
     height: 30px;
     position: absolute;
 }
-div.plane3, div.plane4 {
-    transform: rotateY(180deg);
-}
 div.cockpit {
     width: 100vw;
     height: 100vh;

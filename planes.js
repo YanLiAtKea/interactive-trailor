@@ -21,18 +21,34 @@ function hintGone(){
 function changePosition(){
     let X1 = Math.random()*190;
     let Y1 = Math.random()*61;
+    let size1 = Math.random();
+    if (size1>.5){
+        plane1.style.transform = "scale(" + size1+ ")";
+    }
     plane1.style.left = X1 +"vw";
     plane1.style.top = Y1 +"vw"; // use vw so that planes stay inside the cockpit view
     let X2 = Math.random()*190;
     let Y2 = Math.random()*61;
+    let size2 = Math.random();
+    if (size2>.5){
+        plane2.style.transform = "scale(" + size2+ ")";
+    }
     plane2.style.left = X2 +"vw";
     plane2.style.top = Y2 +"vw";
     let X3 = Math.random()*190;
     let Y3 = Math.random()*61;
+    let size3 = Math.random();
+    if (size3>.5){
+        plane3.style.transform = "scale(" + size3+ ") rotateY(180deg)";
+    }
     plane3.style.left = X3 +"vw";
     plane3.style.top = Y3 +"vw";
     let X4 = Math.random()*190;
     let Y4 = Math.random()*61;
+    let size4 = Math.random();
+    if (size4>.5){
+        plane4.style.transform = "scale(" + size4+ ") rotateY(180deg)";
+    }
     plane4.style.left = X4 +"vw";
     plane4.style.top = Y4 +"vw";
 }
@@ -105,37 +121,36 @@ window.onload = function(){
     function gotHit(plane){
         plane.addEventListener('click', hit);
         function hit(){
-            planeNr--;
-            if (planeNr == 3){
-                clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
-                changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
-                hintPlane.textContent = '1 down, 3 to go';
-                setTimeout(hintGone, 2000);
-            } else if (planeNr == 2){
-                clearInterval(changePositionInt2);
-                changePositionInt3 = setInterval(changePosition, 1000);
-                hintPlane.textContent = 'half way done, 2 to go';
-                setTimeout(hintGone, 2000);
-            } else if (planeNr == 1){
-                clearInterval(changePositionInt3);
-                changePositionint4 = setInterval(changePosition, 700);
-                hintPlane.textContent = '3 down, finish the last one';
-                setTimeout(hintGone, 2000);
-            }  else {
-                clearInterval(changePositionInt4);
-                setTimeout(redirectToStatic, 2000);
-                function redirectToStatic(){
-                    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
-                }
-            }
-            setTimeout(hitDelay, 700);
+            setTimeout(hitDelay, 700); // need delay cuz plane is in distance, need some time for the bullet to reach
             function hitDelay(){
                 let planeImg = plane.children[0];
                 explosionAudio.play();
                 planeImg.style.height = "0";
+                planeNr--;
+                if (planeNr == 3){
+                    clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
+                    changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
+                    hintPlane.textContent = '1 down, 3 to go';
+                    setTimeout(hintGone, 2000);
+                } else if (planeNr == 2){
+                    clearInterval(changePositionInt2);
+                    changePositionInt3 = setInterval(changePosition, 1000);
+                    hintPlane.textContent = 'half way done, 2 to go';
+                    setTimeout(hintGone, 2000);
+                } else if (planeNr == 1){
+                    clearInterval(changePositionInt3);
+                    changePositionint4 = setInterval(changePosition, 700);
+                    hintPlane.textContent = '3 down, finish the last one';
+                    setTimeout(hintGone, 2000);
+                }  else {
+                    clearInterval(changePositionInt4);
+                    setTimeout(redirectToStatic, 700);
+                    function redirectToStatic(){
+                        window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+                    }
+                }
             }
         //    smokeAnimation.display: getting bigger
-
         }
     }
 }
