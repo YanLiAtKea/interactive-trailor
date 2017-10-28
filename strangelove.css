@@ -149,8 +149,21 @@ div.russiaFlag img {
     left: 0;
     filter: grayscale(100);
 }
+div.russiaP {
+    height: 55vh;
+}
 div.russiaP img {
-    height: 65vh;
+    width: 80%;
+    position: absolute;
+    bottom: 70px;
+}
+div.trigger {
+    width: 10vw;
+    height: 30px;
+    background: black;
+    position: absolute;
+    bottom: 0;
+    right: 5vw;
 }
 div.conversation {
     width: 40vw;
