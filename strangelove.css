@@ -257,6 +257,13 @@ div.scene img.sky {
     position: absolute;
     left: 0;
     top: 0;
+    animation: skyVibrate 120s infinite;
+}
+@keyframes skyVibrate {
+    to {
+        transform: scale(2.3);
+        transform-origin: top;
+    }
 }
 div.timerDiv {
     height: 2em;
@@ -316,7 +323,7 @@ div.cockpit img.tiltLeft {
 }
 @keyframes tiltL {
     to {
-        transform: translate(-20px, -10px) rotate(17deg) scale(1.1);
+        transform: translate(-20px, -10px) rotate(15deg) scale(1.1);
     }
 }
 .cockpit img.shake {
@@ -335,14 +342,14 @@ div.cockpit img.tiltLeft.shake, div.cockpit img.afterTiltAndShake.shake {
 }
 @keyframes tiltAndShake {
     0%, 18%, 36%, 54%, 77%, 97% {
-        transform: translate(-20px, -.3vh) rotate(17deg) scale(1.1);
+        transform: translate(-20px, -.3vh) rotate(15deg) scale(1.1);
     }
     9%, 27%, 45%, 65%, 86%, 100% {
-        transform: translate(-20px,0) rotate(17deg) scale(1.1);
+        transform: translate(-20px,0) rotate(15deg) scale(1.1);
     }
 }
 div.cockpit img.afterTiltAndShake {
-    transform: translate(-20px, -10px) rotate(17deg) scale(1.1);
+    transform: translate(-20px, -10px) rotate(15deg) scale(1.1);
 }
 /* static */
 div.staticWrapper {
