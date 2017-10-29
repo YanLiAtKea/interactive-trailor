@@ -286,7 +286,7 @@ div.scene img.sky {
     position: absolute;
     left: 0;
     top: 0;
-    animation: skyVibrate 120s infinite;
+    animation: skyVibrate 123s infinite;
 }
 @keyframes skyVibrate {
     to {
