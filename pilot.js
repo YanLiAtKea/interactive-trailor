@@ -7,6 +7,11 @@ let stage4 = document.querySelector('.stage4');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
 let moveBombInt1;
+// in case user failed
+function redirectToStatic(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+}
+// start game with a random timeout for bomb class
 function generateRandomTo(){
     let randomTimeTo = Math.random();
     let timeoutTo = randomTimeTo * 3000 + 2000; // so moveBomb runs after 2-5s
@@ -20,6 +25,17 @@ function moveBomb(){
     let currentClass = bomb.className;
     bomb.className = newBombClass;
     pilot.className = newBombClass + "Fall"; // if no key is pressed, then die;
+    if (pilot.className.indexOf('Fall')>-1){ // if after 1s no other key is pressed to save the pilot, redirect to static
+        let duration = 0;
+        let checkFallDurationInt = setInterval(checkFallDuration, 10);
+        function checkFallDuration(){
+            console.log(duration);
+            duration +=10;
+            if ((pilot.className.indexOf('Fall')>-1) && duration == 1000){
+                redirectToStatic();
+            }
+        }
+    }
     let currentTime = startTime[3];
     window.addEventListener('keydown', checkUser);
     function checkUser(e){
@@ -29,7 +45,7 @@ function moveBomb(){
         let keyIndex = allKeys.indexOf(keyPressed);
         let classIndex = classes.indexOf(newBombClass);
         if (currentTime < 3000){
-            if (pressKeyTime - currentTime < 70){
+            if (pressKeyTime - currentTime < 100){
                 console.log(pressKeyTime-currentTime);
                 pilot.className = newBombClass;
                 window.removeEventListener('keydown', checkUser);
@@ -37,7 +53,7 @@ function moveBomb(){
             } else {
                 pilot.className = newBombClass + "Fall";
                 window.removeEventListener('keydown', checkUser);
-                console.log('dead');
+                setTimeout(redirectToStatic, 1000);
             }
         } else if (3000 <= currentTime < 10000){
             stage1.style.display = "none";
@@ -52,7 +68,7 @@ function moveBomb(){
             } else {
                 pilot.className = newBombClass + "Fall";
                 window.removeEventListener('keydown', checkUser);
-                console.log('dead');
+                setTimeout(redirectToStatic, 1000);
             }
         } else if (10000 <= currentTime < 12000) {
             stage2.style.display = "none";
@@ -66,7 +82,7 @@ function moveBomb(){
             } else {
                 pilot.className = newBombClass + "Fall";
                 window.removeEventListener('keydown', checkUser);
-                console.log('dead');
+                setTimeout(redirectToStatic, 1000);
             }
         }
     }
