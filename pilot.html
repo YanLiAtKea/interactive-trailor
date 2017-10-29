@@ -8,15 +8,21 @@
 </head>
 
 <body>
+    <audio id="planes" autoplay loop>
+        <source src="audios/airplanesound.mp3" type="audio/mpeg">
+    </audio>
+
     <p>Your people are counting on you! Hold on to that bomb!</p>
-    <div class="pilotPerspective">
-        <div class="pilotWrapper pilotSwing">
-            <div class="pilot"></div>
+    <div class="insidePlane">
+        <div class="pilotPerspective">
+            <div class="pilotWrapper pilotLeanForward">
+                <div class="pilot"></div>
+            </div>
         </div>
-    </div>
-    <div class="bombPerspective">
-        <div class="bombWrapper bombSwing">
-            <div class="bomb"></div>
+        <div class="bombPerspective">
+            <div class="bombWrapper bombLeanForward">
+                <div class="bomb"></div>
+            </div>
         </div>
     </div>
     <script src="pilot.js"></script>

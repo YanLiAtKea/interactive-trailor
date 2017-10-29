@@ -483,20 +483,13 @@ div.staticWrapper p.staticPlaneP4.type {
     }
 }
 /* pilot */
-.bombWrapper, .bombPerspective  {
-    height: 40vh;
-    width: 40vh;
-    position: absolute;
-    bottom: 0;
-    left: 60vh;
-}
-.bombWrapper {
-    border: 1px solid black;
-    left: 0;
-}
-.bombWrapper.bombSwing {
-    animation: swing 2s infinite;
-    transform-origin: bottom center;
+@keyframes cockpitShake {
+    0%, 18%, 36%, 54%, 77%, 97% {
+        transform: translate(0, .2vh);
+    }
+    9%, 27%, 45%, 65%, 86%, 100% {
+        transform: translate(0, 0);
+    }
 }
 @keyframes swing {
     0%, 50%, 100% {
@@ -509,13 +502,68 @@ div.staticWrapper p.staticPlaneP4.type {
         transform: rotate(60deg);
     }
 }
-.bomb {
-    height: 20vh;
-    width: 20vh;
-    border-radius: 10vh;
-    background-color: black;
+@keyframes swingLeft {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-60deg);
+    }
+}
+@keyframes swingRight {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(60deg);
+    }
+}
+@keyframes lean {
+    0%, 50%, 100% {
+        transform: rotateX(0deg);
+    }
+    25% {
+        transform: rotateX(-55deg);
+    }
+    75% {
+        transform: rotateX(65deg);
+    }
+}
+@keyframes leanForward {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(-55deg);
+    }
+}
+@keyframes leanBackward {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(65deg);
+    }
+}
+.insidePlane {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    bottom: 0;
+    animation: cockpitShake .67s infinite;
+}
+.bombPerspective {
+    perspective: 300px;
+}
+.pilotPerspective {
+    perspective: 330px;
+}
+.bombWrapper, .bombPerspective  {
+    height: 40vh;
+    width: 40vh;
     position: absolute;
-    left: 10vh;
+    bottom: 0;
+    left: 60vh;
 }
 .pilotWrapper, .pilotPerspective {
     height: 80vh;
@@ -528,32 +576,63 @@ div.staticWrapper p.staticPlaneP4.type {
     border: 1px solid red;
     left: 0;
 }
-.pilotWrapper.pilotSwing{
-    animation: swing 2s .1s infinite;
+.bombWrapper {
+    border: 1px solid black;
+    left: 0;
+}
+.bomb {
+    height: 20vh;
+    width: 20vh;
+    border-radius: 10vh;
+    background-color: black;
+    position: absolute;
+    left: 10vh;
+}
+.bombWrapper.bombSwing {
+    animation: swing 2s infinite;
     transform-origin: bottom center;
 }
-.bombPerspective {
-    perspective: 300px;
+.bombWrapper.bombSwingLeft {
+    animation: swingLeft 1s;
+    transform-origin: bottom center;
 }
-.pilotPerspective {
-    perspective: 330px;
+.bombWrapper.bombSwingRight {
+    animation: swingRight 1s;
+    transform-origin: bottom center;
 }
 .bombWrapper.bombLean {
     animation: lean 2s infinite;
     transform-origin: bottom;
 }
+.bombWrapper.bombLeanForward {
+    animation: leanForward 1s;
+    transform-origin: bottom center;
+}
+.bombWrapper.bombLeanBackward {
+    animation: leanBackward 1s;
+    transform-origin: bottom center;
+}
+.pilotWrapper.pilotSwing{
+    animation: swing 2s .1s infinite;
+    transform-origin: bottom center;
+}
+.pilotWrapper.pilotSwingLeft {
+    animation: swingLeft 1s;
+    transform-origin: bottom center;
+}
+.pilotWrapper.pilotSwingRight {
+    animation: swingRight 1s;
+    transform-origin: bottom center;
+}
 .pilotWrapper.pilotLean {
     animation: lean 2s .1s infinite;
     transform-origin: bottom;
 }
-@keyframes lean {
-    0%, 50%, 100% {
-        transform: rotateX(0deg);
-    }
-    25% {
-        transform: rotateX(-55deg);
-    }
-    75% {
-        transform: rotateX(65deg);
-    }
+.pilotWrapper.pilotLeanForward {
+    animation: leanForward 1s;
+    transform-origin: bottom center;
+}
+.pilotWrapper.pilotLeanBackward {
+    animation: leanBackward 1s;
+    transform-origin: bottom center;
 }
