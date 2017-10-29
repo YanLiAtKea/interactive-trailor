@@ -3,6 +3,8 @@ let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
+let shootingTime = []; // for each shooting, in order to restrict timeout in between
+let nthShooting = -1; // will ++ later, array index starts at 0
 let sky = document.querySelector('.sky');
 let hintPlane = document.querySelector('.hintPlane');
 let planes = document.querySelectorAll('.plane');
@@ -21,6 +23,32 @@ let changePositionInt1 = setInterval(changePosition, 1700);
 let changePositionInt2; // need to set these here to avoid "undefined" when clearInterval later in different scopes
 let changePositionInt3;
 let changePositionInt4;
+// timer runs
+function timer(){
+    function addZero(num){
+        if (num <= 9){
+            num = "0" + num;
+        }
+        return num;
+    }
+    let timer = addZero(startTime[0]) + ":" + addZero(startTime[1]) + ":" + addZero(startTime[2]);
+    timeToDisplay.textContent = timer;
+    startTime[3]++;
+    if (startTime[3] < 12000){
+        let minPast = Math.floor((startTime[3]/100)/60);
+        let secPast = Math.floor((startTime[3]/100) - minPast*60);
+        let mmsPast = Math.floor(startTime[3] - secPast * 100 - minPast * 6000);
+        startTime[0] = 1- minPast;
+        startTime[1] = 59 - secPast;
+        startTime[2] = 99 - mmsPast;
+        if (startTime[0] == 0){
+            timeToDisplay.classList.add('flash');
+        }
+        if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
+            planAudio.pause();
+        }
+    }
+}
 // redirect in case of win
 function redirectToStatic(){
     window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
@@ -90,33 +118,8 @@ function changePosition(){
 }
 
 window.onload = function(){
-    // timer run down
+    // timer run down every 10mms
     setInterval(timer, 10);
-    function timer(){
-        function addZero(num){
-            if (num <= 9){
-                num = "0" + num;
-            }
-            return num;
-        }
-        let timer = addZero(startTime[0]) + ":" + addZero(startTime[1]) + ":" + addZero(startTime[2]);
-        timeToDisplay.textContent = timer;
-        startTime[3]++;
-        if (startTime[3] < 12000){
-            let minPast = Math.floor((startTime[3]/100)/60);
-            let secPast = Math.floor((startTime[3]/100) - minPast*60);
-            let mmsPast = Math.floor(startTime[3] - secPast * 100 - minPast * 6000);
-            startTime[0] = 1- minPast;
-            startTime[1] = 59 - secPast;
-            startTime[2] = 99 - mmsPast;
-            if (startTime[0] == 0){
-                timeToDisplay.classList.add('flash');
-            }
-            if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
-                planAudio.pause();
-            }
-        }
-    }
     // scroll the sky img based on key stroke
     window.addEventListener('keydown', moveSky);
     function moveSky(e){
@@ -189,20 +192,29 @@ window.onload = function(){
             cockpit.className = "";
         }
     }
-    // gunfire everytime mouse is clicked
+    // gunfire everytime mouse is clicked, must wait 1.2s between 2 shots
     window.addEventListener('mousedown', gunfire);
     function gunfire(){
-        shotAudio.play();
-        cockpit.classList.add('shake');
-        cockpit.addEventListener('animationend', afterShake);
-        function afterShake(){
-            if (cockpit.className == "tiltLeft shake") {
-                cockpit.className = "afterTiltAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
-                cockpit.removeEventListener('animationend', afterShake)
-            } else {
-                cockpit.classList.remove('shake');
-                cockpit.removeEventListener('animationend', afterShake)
+        // get the timing for each gun fire
+        nthShooting++;
+        shootingTime[nthShooting] = startTime[3];
+        console.log(shootingTime);
+        if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]>120)){
+            shotAudio.play();
+            cockpit.classList.add('shake');
+            cockpit.addEventListener('animationend', afterShake);
+            function afterShake(){
+                if (cockpit.className == "tiltLeft shake") {
+                    cockpit.className = "afterTiltAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
+                    cockpit.removeEventListener('animationend', afterShake)
+                } else {
+                    cockpit.classList.remove('shake');
+                    cockpit.removeEventListener('animationend', afterShake)
+                }
             }
+        } else if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]<=120)){
+            hintPlane.textContent = "you can't fire continuously";
+            setTimeout(hintGone, 1000);
         }
     }
     // randomly change position of the planes
@@ -256,4 +268,3 @@ window.onload = function(){
         }
     }
 }
-
