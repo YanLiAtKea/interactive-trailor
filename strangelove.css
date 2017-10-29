@@ -483,6 +483,77 @@ div.staticWrapper p.staticPlaneP4.type {
     }
 }
 /* pilot */
+.bombWrapper, .bombPerspective  {
+    height: 40vh;
+    width: 40vh;
+    position: absolute;
+    bottom: 0;
+    left: 60vh;
+}
 .bombWrapper {
-    height:
+    border: 1px solid black;
+    left: 0;
+}
+.bombWrapper.bombSwing {
+    animation: swing 2s infinite;
+    transform-origin: bottom center;
+}
+@keyframes swing {
+    0%, 50%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-60deg);
+    }
+    75% {
+        transform: rotate(60deg);
+    }
+}
+.bomb {
+    height: 20vh;
+    width: 20vh;
+    border-radius: 10vh;
+    background-color: black;
+    position: absolute;
+    left: 10vh;
+}
+.pilotWrapper, .pilotPerspective {
+    height: 80vh;
+    width: 20vh;
+    position: absolute;
+    bottom: 0;
+    left: 70vh;
+}
+.pilotWrapper {
+    border: 1px solid red;
+    left: 0;
+}
+.pilotWrapper.pilotSwing{
+    animation: swing 2s .1s infinite;
+    transform-origin: bottom center;
+}
+.bombPerspective {
+    perspective: 300px;
+}
+.pilotPerspective {
+    perspective: 330px;
+}
+.bombWrapper.bombLean {
+    animation: lean 2s infinite;
+    transform-origin: bottom;
+}
+.pilotWrapper.pilotLean {
+    animation: lean 2s .1s infinite;
+    transform-origin: bottom;
+}
+@keyframes lean {
+    0%, 50%, 100% {
+        transform: rotateX(0deg);
+    }
+    25% {
+        transform: rotateX(-55deg);
+    }
+    75% {
+        transform: rotateX(65deg);
+    }
 }
