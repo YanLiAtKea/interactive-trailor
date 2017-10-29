@@ -11,13 +11,17 @@
     <audio id="planes" autoplay loop>
         <source src="audios/airplanesound.mp3" type="audio/mpeg">
     </audio>
-
-    <p>Your people are counting on you! Hold on to that bomb!</p>
+    <div class="pilotGameIntro">
+        <p>Your people are counting on you! Hold on to that bomb!</p>
+        <p>Whenever and in whichever direction the bomb moves, follow it using the ↑↓←→ keys immediately!</p>
+        <p>Hold your posture by holding the key down. Release only when the bomb is bouncing back</p>
+    </div>
+    <div class= "timerDiv"></div>
     <div class="insidePlane">
-        <div class="bombPerspective">
-            <div class="bombWrapper leanForward">
-                <div class="bomb">
-                    <div class="pilotOnBomb fallForward"></div>
+        <div id="bombPerspective">
+            <div id="bombWrapper">
+                <div id="bomb">
+                    <div id="pilotOnBomb"></div>
                 </div>
             </div>
         </div>

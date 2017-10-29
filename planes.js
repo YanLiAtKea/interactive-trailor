@@ -63,7 +63,7 @@ function changePosition(){
     let X1 = Math.random()*190;
     let Y1 = Math.random()*61;
     let size1 = Math.random();
-    if (size1 >.4){
+    if (size1 >.5){
         plane1.style.transform = "scale(" + size1+ ")";
     }
     plane1.style.left = X1 +"vw";
@@ -71,7 +71,7 @@ function changePosition(){
     let X2 = Math.random()*190;
     let Y2 = Math.random()*61;
     let size2 = Math.random();
-    if (size2 >.4){
+    if (size2 >.5){
         plane2.style.transform = "scale(" + size2+ ")";
     }
     plane2.style.left = X2 +"vw";
@@ -79,7 +79,7 @@ function changePosition(){
     let X3 = Math.random()*190;
     let Y3 = Math.random()*61;
     let size3 = Math.random();
-    if (size3 >.4){
+    if (size3 >.5){
         plane3.style.transform = "scale(" + size3+ ") rotateY(180deg)";
     }
     plane3.style.left = X3 +"vw";
@@ -87,7 +87,7 @@ function changePosition(){
     let X4 = Math.random()*190;
     let Y4 = Math.random()*61;
     let size4 = Math.random();
-    if (size4 >.4){
+    if (size4 >.5){
         plane4.style.transform = "scale(" + size4+ ") rotateY(180deg)";
     }
     plane4.style.left = X4 +"vw";
