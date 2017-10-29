@@ -483,6 +483,18 @@ div.staticWrapper p.staticPlaneP4.type {
     }
 }
 /* pilot */
+.stage1 {
+    display: inherit;
+}
+.stage2 {
+    display: none;
+}
+.stage3 {
+    display: none;
+}
+.stage4 {
+    display: none;
+}
 div.pilotGameIntro{
     width: 100vw;
     background-color: black;

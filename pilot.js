@@ -1,5 +1,9 @@
 let pilot = document.querySelector('#pilotOnBomb');
 let bomb = document.querySelector('#bombWrapper');
+let stage1 = document.querySelector('.stage1');
+let stage2 = document.querySelector('.stage2');
+let stage3 = document.querySelector('.stage3');
+let stage4 = document.querySelector('.stage4');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
 let moveBombInt1;
@@ -22,15 +26,48 @@ function moveBomb(){
         let keyPressed = e.key;
         let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
         let pressKeyTime = startTime[3];
-        if (pressKeyTime - currentTime < 37){
-            console.log(pressKeyTime-currentTime);
-            pilot.className = newBombClass;
-            window.removeEventListener('keydown', checkUser);
-            generateRandomTo();
-        } else {
-            pilot.className = newBombClass + "Fall";
-            window.removeEventListener('keydown', checkUser);
-            console.log('dead');
+        let keyIndex = allKeys.indexOf(keyPressed);
+        let classIndex = classes.indexOf(newBombClass);
+        if (currentTime < 3000){
+            if (pressKeyTime - currentTime < 70){
+                console.log(pressKeyTime-currentTime);
+                pilot.className = newBombClass;
+                window.removeEventListener('keydown', checkUser);
+                generateRandomTo();
+            } else {
+                pilot.className = newBombClass + "Fall";
+                window.removeEventListener('keydown', checkUser);
+                console.log('dead');
+            }
+        } else if (3000 <= currentTime < 10000){
+            stage1.style.display = "none";
+            stage2.style.display = "inherit";
+            stage2.style.color = "green";
+            console.log(keyIndex, classIndex);
+            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 100)){
+                console.log(pressKeyTime-currentTime);
+                pilot.className = newBombClass;
+                window.removeEventListener('keydown', checkUser);
+                generateRandomTo();
+            } else {
+                pilot.className = newBombClass + "Fall";
+                window.removeEventListener('keydown', checkUser);
+                console.log('dead');
+            }
+        } else if (10000 <= currentTime < 12000) {
+            stage2.style.display = "none";
+            stage3.style.display = "inherit";
+            stage3.style.color = "red";
+            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 50)){
+                console.log(pressKeyTime-currentTime);
+                pilot.className = newBombClass;
+                window.removeEventListener('keydown', checkUser);
+                generateRandomTo();
+            } else {
+                pilot.className = newBombClass + "Fall";
+                window.removeEventListener('keydown', checkUser);
+                console.log('dead');
+            }
         }
     }
 }
