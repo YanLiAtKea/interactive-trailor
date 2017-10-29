@@ -1,6 +1,7 @@
 let planAudio = document.querySelector('audio#planes');
 let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
+let planeLeft = document.querySelector('.planeCount p');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
 let shootingTime = []; // for each shooting, in order to restrict timeout in between
@@ -220,6 +221,7 @@ window.onload = function(){
     // randomly change position of the planes
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
     changePositionInt1; // start interval
+    // plane got shot
     planes.forEach(checkAllPlanes);
     function checkAllPlanes(plane) {
         plane.addEventListener('click', hit);
@@ -234,34 +236,42 @@ window.onload = function(){
                     clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
                     changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
                     hintPlane.textContent = '1 down, 3 to go';
+                    planeLeft.textContent = "1/4";
                     setTimeout(hintGone, 2000);
                 } else if (planeNr == 2){
                     clearInterval(changePositionInt2);
                     changePositionInt3 = setInterval(changePosition, 1000);
                     hintPlane.textContent = 'half way done, 2 to go';
+                    planeLeft.textContent = "2/4";
                     setTimeout(hintGone, 2000);
                 } else if (planeNr == 1){
                     clearInterval(changePositionInt3);
                     changePositionint4 = setInterval(changePosition, 700);
                     hintPlane.textContent = '3 down, finish the last one';
+                    planeLeft.textContent = "3/4";
                     setTimeout(hintGone, 2000);
                 }  else if (planeNr ==0 && timeToDisplay.innerHTML[1] != 0) { // finished too fast, add extra planes
                     hintPlane.textContent = '4 down! WELL DONE! But 3 backup planes just joined the battle!';
+                    planeLeft.textContent = "4/7";
                     setTimeout(hintGone, 3000);
                     extraPlanes.forEach(showExtra);
                     function showExtra(extraPlane){
                         extraPlane.style.display = "inherit";
                     }
                 } else if (planeNr ==0 && timeToDisplay.innerHTML[1] == 0){
+                    planeLeft.textContent = "4/4";
                     setTimeout(redirectToStatic, 500);
                 } else if (planeNr == -1){
                     hintPlane.textContent = 'bonus 1 !';
+                    planeLeft.textContent = "5/7";
                     setTimeout(hintGone, 2000);
                 } else if (planeNr == -2){
                     hintPlane.textContent = 'bonus 2 !';
+                    planeLeft.textContent = "6/7";
                     setTimeout(hintGone, 2000);
                 }else if (planeNr == -3) {
                     hintPlane.textContent = 'bonus 3 !';
+                    planeLeft.textContent = "7/7";
                     setTimeout(redirectToStatic, 500);
                 }
             }

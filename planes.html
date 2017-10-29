@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>planes</title>
+    <title>shoot the planes!</title>
     <link rel="stylesheet" href="strangelove.css">
 </head>
-
 <body>
     <audio id="planes" autoplay loop>
         <source src="audios/airplanesound.mp3" type="audio/mpeg">
@@ -22,7 +20,8 @@
         <img class="sky" src="images/sky.jpg" alt = "sky background">
     </div>
     <div class="cockpit">
-        <div class="timerDiv"></div>
+        <div class= "timerDiv"></div>
+        <div class= "planeCount"><p>0/4</p></div>
         <p class="hintPlane"></p>
         <div class="plane plane1"><img src="images/plane.png" alt="plane"></div>
         <div class="plane plane2"><img src="images/plane.png" alt="plane"></div>
@@ -35,5 +34,4 @@
     </div>
     <script src="planes.js"></script>
 </body>
-
 </html>
