@@ -22,7 +22,8 @@ function moveBomb(){
         let keyPressed = e.key;
         let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
         let pressKeyTime = startTime[3];
-        if (pressKeyTime - currentTime < 100){
+        if (pressKeyTime - currentTime < 37){
+            console.log(pressKeyTime-currentTime);
             pilot.className = newBombClass;
             window.removeEventListener('keydown', checkUser);
             generateRandomTo();

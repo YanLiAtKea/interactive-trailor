@@ -681,15 +681,15 @@ div.pilotGameIntro{
     animation: leanbackward 1s .1s;
 }
 #pilotOnBomb.swingRightFall {
-    animation: fallLeft 1s .1s forwards;
+    animation: fallLeft 1s .07s forwards;
 }
 #pilotOnBomb.swingLeftFall {
-    animation: fallRight 1s .1s forwards;
+    animation: fallRight 1s .07s forwards;
 }
 #pilotOnBomb.leanBackwardFall {
-    animation: fallForward 1s .1s forwards;
+    animation: fallForward 1s .07s forwards;
 }
 #pilotOnBomb.leanForwardFall {
-    animation: fallBackward 1s .1s forwards;
+    animation: fallBackward 1s .07s forwards;
     transform-origin: bottom;
 }
