@@ -146,8 +146,8 @@ div.character1:hover, div.character2:hover, div.character3:hover, div.character4
 div.character1:hover img, div.character2:hover img, div.character3:hover img, div.character4:hover img {
     width: 50%;
 }
-div.character3:hover img {
-    width: 40%;
+div.character1:hover img {
+    width: 55%;
 }
 div.character4 {
     right: 4vw;
