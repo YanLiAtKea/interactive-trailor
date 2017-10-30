@@ -82,12 +82,32 @@ div.map {
     height: 100vh;
     border: 3px solid black;
     position: relative;
+    background-image: url(images/world-map-default.png);
+    background-size: cover;
 }
 /* characters*/
+div.taskDes {
+    padding: 3em;
+    padding-top: 2em;
+    display: none;
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+div.characters div.taskDes p {
+    text-align: left;
+    font-size: 1em;
+}
+div.characters div.taskDes p.td.tdTall {
+    margin-top: 1em;
+    text-decoration: underline;
+}
 div.characters {
-    height: 50vh;
+    height: 40vh;
     width: 20vw;
-    background-color: darkgray;
+    background-image: url(images/opacityBG.png);
     position: absolute;
     top: 20vh;
 }
@@ -100,28 +120,45 @@ div.character2 {
 div.character3 {
     left: 52vw;
 }
-div.character1:hover, div.character2:hover, div.character3:hover {
-    width: 80vw;
+div.characters p {
+    font-size: 1.3em;
+    text-align: center;
+}
+div.characters:hover {
+    background: #222;
+}
+div.characters:hover p.characterTitle {
+    display: none;
+}
+div.characters:hover p.td {
+    display: inherit;
+    color: white;
+}
+div.character1:hover div.taskDes, div.character2:hover div.taskDes, div.character3:hover div.taskDes, div.character4:hover div.taskDes {
+    display: inherit;
+}
+div.character1:hover, div.character2:hover, div.character3:hover, div.character4:hover {
+    width: 89vw;
+    height: 59vh;
     left: 4vw;
     z-index: 1;
 }
 div.character1:hover img, div.character2:hover img, div.character3:hover img, div.character4:hover img {
-    width: 40%;
+    width: 50%;
 }
 div.character3:hover img {
     width: 40%;
 }
 div.character4 {
-    background-color: darkred;
     right: 4vw;
-    opacity: .9;
 }
 div.character4:hover {
-    width: 80vw;
     right: 4vw;
 }
 div.characters img {
-    width: 110%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 /* conversation*/
 div.us {
