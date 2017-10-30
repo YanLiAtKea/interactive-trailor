@@ -343,7 +343,7 @@ div.scene img.sky {
     position: absolute;
     left: 0;
     top: 0;
-    animation: skyVibrate 123s infinite;
+    animation: skyVibrate 121s forwards;
 }
 @keyframes skyVibrate {
     to {
@@ -360,7 +360,7 @@ div.timerDiv {
     text-align: center;
     padding-top: .5em;
     color: white;
-    font-size: 2.5em;
+    font-size: 5em;
     z-index: 3;
 }
 div.timerDiv.flash {
@@ -383,8 +383,9 @@ div.planeCount {
     z-index: 2;
     height: 5em;
     width: 9em;
+    font-size: 2em;
     text-align: center;
-    padding-top: 1em;
+    padding-top: .8em;
     color: white;
     background-color: rgba(255,255,255,.3);
 }
@@ -421,7 +422,7 @@ div.cockpit img {
     z-index: 1;
 }
 div.cockpit img.tiltLeft {
-    animation: tiltL .67s cubic-bezier(0.24,-0.46, 0.25, 1) forwards;
+    animation: tiltL .47s cubic-bezier(0.24,-0.46, 0.25, 1) forwards;
 }
 @keyframes tiltL {
     to {
@@ -429,11 +430,11 @@ div.cockpit img.tiltLeft {
     }
 }
 div.cockpit img.tiltRight {
-    animation: tiltR .67s cubic-bezier(0.24,-0.46, 0.25, 1) forwards;
+    animation: tiltR .47s cubic-bezier(0.24,-0.46, 0.25, 1) forwards;
 }
 @keyframes tiltR {
     to {
-        transform: translate(20px, 10px) rotate(-15deg) scale(1.1);
+        transform: translate(45px, 10px) rotate(-15deg) scale(1.1);
     }
 }
 .cockpit img.shake {
@@ -448,7 +449,7 @@ div.cockpit img.tiltRight {
     }
 }
 div.cockpit img.tiltLeft.shake {
-    animation: tiltLeftAndShake .67s forwards;
+    animation: tiltLeftAndShake .65s forwards;
 }
 @keyframes tiltLeftAndShake {
     0%, 18%, 36%, 54%, 77%, 97% {
@@ -459,18 +460,18 @@ div.cockpit img.tiltLeft.shake {
     }
 }
 div.cockpit img.tiltRight.shake {
-    animation: tiltRightAndShake .67s forwards;
+    animation: tiltRightAndShake .65s forwards;
 }
 @keyframes tiltRightAndShake {
     0%, 18%, 36%, 54%, 77%, 97% {
-        transform: translate(20px, -.3vh) rotate(-15deg) scale(1.1);
+        transform: translate(45px, -.3vh) rotate(-15deg) scale(1.1);
     }
     9%, 27%, 45%, 65%, 86%, 100% {
-        transform: translate(20px,0) rotate(-15deg) scale(1.1);
+        transform: translate(45px,0) rotate(-15deg) scale(1.1);
     }
 }
 div.cockpit img.afterTiltRightAndShake {
-    transform: translate(20px, 0) rotate(-15deg) scale(1.1);
+    transform: translate(45px, 0) rotate(-15deg) scale(1.1);
 }
 div.cockpit img.afterTiltLeftAndShake {
     transform: translate(-20px, 0) rotate(15deg) scale(1.1);

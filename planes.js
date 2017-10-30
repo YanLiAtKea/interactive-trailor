@@ -5,7 +5,9 @@ let planeLeft = document.querySelector('.planeCount p');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
 let shootingTime = []; // for each shooting, in order to restrict timeout in between
+let hitTime = []; // for each plant got hit, in order to restrict timeout in between
 let nthShooting = -1; // will ++ later, array index starts at 0
+let nthHit = -1; // will ++ later, array index starts at 0
 let sky = document.querySelector('.sky');
 let hintPlane = document.querySelector('.hintPlane');
 let planes = document.querySelectorAll('.plane');
@@ -58,12 +60,12 @@ function redirectToStatic(){
 function hintGone(){
     hintPlane.textContent = "";
 }
-// change planes position
+// change planes position and size
 function changePosition(){
     let X1 = Math.random()*190;
     let Y1 = Math.random()*61;
     let size1 = Math.random();
-    if (size1 >.5){
+    if (size1 >.7){
         plane1.style.transform = "scale(" + size1+ ")";
     }
     plane1.style.left = X1 +"vw";
@@ -71,7 +73,7 @@ function changePosition(){
     let X2 = Math.random()*190;
     let Y2 = Math.random()*61;
     let size2 = Math.random();
-    if (size2 >.5){
+    if (size2 >.7){
         plane2.style.transform = "scale(" + size2+ ")";
     }
     plane2.style.left = X2 +"vw";
@@ -79,7 +81,7 @@ function changePosition(){
     let X3 = Math.random()*190;
     let Y3 = Math.random()*61;
     let size3 = Math.random();
-    if (size3 >.5){
+    if (size3 >.7){
         plane3.style.transform = "scale(" + size3+ ") rotateY(180deg)";
     }
     plane3.style.left = X3 +"vw";
@@ -87,7 +89,7 @@ function changePosition(){
     let X4 = Math.random()*190;
     let Y4 = Math.random()*61;
     let size4 = Math.random();
-    if (size4 >.5){
+    if (size4 >.7){
         plane4.style.transform = "scale(" + size4+ ") rotateY(180deg)";
     }
     plane4.style.left = X4 +"vw";
@@ -95,7 +97,7 @@ function changePosition(){
     let X5 = Math.random()*190;
     let Y5 = Math.random()*61;
     let size5 = Math.random();
-    if (.8 > size5 > .3){
+    if (.8 > size5 > .5){
         plane5.style.transform = "scale(" + size5+ ")";
     }
     plane5.style.left = X5 +"vw";
@@ -103,7 +105,7 @@ function changePosition(){
     let X6 = Math.random()*190;
     let Y6 = Math.random()*61;
     let size6 = Math.random();
-    if (.8 >size6 >.3){
+    if (.8 >size6 >.5){
         plane6.style.transform = "scale(" + size6+ ")";
     }
     plane6.style.left = X6 +"vw";
@@ -111,7 +113,7 @@ function changePosition(){
     let X7 = Math.random()*190;
     let Y7 = Math.random()*61;
     let size7 = Math.random();
-    if (.8 >size7 >.3){
+    if (.8 >size7 >.5){
         plane7.style.transform = "scale(" + size7+ ") rotateY(180deg)";
     }
     plane7.style.left = X7 +"vw";
@@ -159,8 +161,8 @@ window.onload = function(){
         }
         function moveUp(){
             let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
-            if (currentPositionTop >= 10){
-                currentPositionTop-=10;
+            if (currentPositionTop >= 13){
+                currentPositionTop-=13;
                 document.scrollingElement.scrollTop = currentPositionTop;
             }
         }
@@ -169,38 +171,23 @@ window.onload = function(){
             let viewportHeight = window.innerHeight;
             let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
             if (currentPositionTop < (heightOfSky-viewportHeight)){
-                currentPositionTop+=10;
+                currentPositionTop+=13;
                 document.scrollingElement.scrollTop = currentPositionTop;
             }
         }
     }
-    // tilt plane
-/*    setInterval(generateRandom, 3000);
-    function generateRandom(){
-        let randomNr = Math.random();
-        if (randomNr>.5){
-            if (cockpit.className !== "afterTiltAndShake" && cockpit.className !== "tiltLeft"){
-                let timeout = Math.random()*20;
-                setTimeout(tiltPlane, timeout);
-                function tiltPlane(){
-                    cockpit.className = 'tiltLeft';
-                }
-            }
-        }
-    }*/
     // tilt plane back when key released
     window.addEventListener('keyup', tiltBack);
     function tiltBack(e){
         cockpit.className = "";
     }
-    // gunfire everytime mouse is clicked, must wait 1.2s between 2 shots
+    // gunfire everytime mouse is clicked, must wait 1s between 2 shots
     window.addEventListener('mousedown', gunfire);
     function gunfire(){
         // get the timing for each gun fire
         nthShooting++;
         shootingTime[nthShooting] = startTime[3];
-        console.log(shootingTime);
-        if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]>120)){
+        if ((nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]>100)) || nthShooting ==0){
             shotAudio.play();
             cockpit.classList.add('shake');
             cockpit.addEventListener('animationend', afterShake);
@@ -215,67 +202,82 @@ window.onload = function(){
                     cockpit.removeEventListener('animationend', afterShake)
                 }
             }
-        } else if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]<=120)){
+        } else if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]<=100)){
             hintPlane.textContent = "you can't fire continuously";
             setTimeout(hintGone, 1000);
         }
     }
-    // randomly change position of the planes
+    // randomly change position and size of the planes
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
-    changePositionInt1; // start interval
+    changePositionInt1; // start interval1
     // plane got shot
     planes.forEach(checkAllPlanes);
     function checkAllPlanes(plane) {
         plane.addEventListener('click', hit);
         function hit(){
-            setTimeout(hitDelay, 700); // need delay cuz plane is in distance, need some time for the bullet to reach
-            function hitDelay(){
-                let planeImg = plane.children[0];
-                explosionAudio.play();
-                planeImg.style.height = "0";
-                planeNr--;
-                if (planeNr == 3){
-                    clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
-                    changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
-                    hintPlane.textContent = '1 down, 3 to go';
-                    planeLeft.textContent = "1/4";
-                    setTimeout(hintGone, 2000);
-                } else if (planeNr == 2){
-                    clearInterval(changePositionInt2);
-                    changePositionInt3 = setInterval(changePosition, 1000);
-                    hintPlane.textContent = 'half way done, 2 to go';
-                    planeLeft.textContent = "2/4";
-                    setTimeout(hintGone, 2000);
-                } else if (planeNr == 1){
-                    clearInterval(changePositionInt3);
-                    changePositionint4 = setInterval(changePosition, 700);
-                    hintPlane.textContent = '3 down, finish the last one';
-                    planeLeft.textContent = "3/4";
-                    setTimeout(hintGone, 2000);
-                }  else if (planeNr ==0 && timeToDisplay.innerHTML[1] != 0) { // finished too fast, add extra planes
-                    hintPlane.textContent = '4 down! WELL DONE! But 3 backup planes just joined the battle!';
-                    planeLeft.textContent = "4/7";
-                    setTimeout(hintGone, 3000);
-                    extraPlanes.forEach(showExtra);
-                    function showExtra(extraPlane){
-                        extraPlane.style.display = "inherit";
+            // get the timing for each gun fire
+            nthHit++;
+            hitTime[nthHit] = startTime[3];
+            if ((nthHit >= 1 && (hitTime[nthHit]-hitTime[(nthHit-1)]>100)) || nthHit ==0){
+                console.log(nthHit, hitTime);
+                setTimeout(hitDelay, 500); // need delay cuz plane is in distance, need some time for the bullet to reach
+                function hitDelay(){
+                    let planeImg = plane.children[0];
+                    explosionAudio.play();
+                    planeImg.style.height = "0";
+                    planeNr--;
+                    if (planeNr == 3){
+                        clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
+                        changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
+                        hintPlane.textContent = '1 down, 3 to go';
+                        planeLeft.textContent = "1/4";
+                        setTimeout(hintGone, 2000);
+                    } else if (planeNr == 2){
+                        clearInterval(changePositionInt2);
+                        changePositionInt3 = setInterval(changePosition, 1000);
+                        hintPlane.textContent = 'half way done, 2 to go';
+                        planeLeft.textContent = "2/4";
+                        setTimeout(hintGone, 2000);
+                    } else if (planeNr == 1){
+                        clearInterval(changePositionInt3);
+                        changePositionint4 = setInterval(changePosition, 700);
+                        hintPlane.textContent = '3 down, finish the last one';
+                        planeLeft.textContent = "3/4";
+                        setTimeout(hintGone, 2000);
+                    }  else if (planeNr ==0 && timeToDisplay.innerHTML[1] != 0) { // finished too fast, add extra planes
+                        hintPlane.textContent = '4 down! WELL DONE! But 3 backup planes just joined the battle!';
+                        planeLeft.textContent = "4/7";
+                        setTimeout(hintGone, 4000);
+                        extraPlanes.forEach(showExtra);
+                        function showExtra(extraPlane){
+                            extraPlane.style.display = "inherit";
+                        }
+                    } else if (planeNr ==0 && timeToDisplay.innerHTML[1] == 0){
+                        clearInterval(changePositionInt4);
+                        changePositionint5 = setInterval(changePosition, 1100);
+                        planeLeft.textContent = "4/4";
+                        setTimeout(redirectToStatic, 500);
+                    } else if (planeNr == -1){
+                        clearInterval(changePositionInt5);
+                        changePositionint6 = setInterval(changePosition, 900);
+                        hintPlane.textContent = 'bonus 1 !';
+                        planeLeft.textContent = "5/7";
+                        setTimeout(hintGone, 2000);
+                    } else if (planeNr == -2){
+                        clearInterval(changePositionInt6);
+                        changePositionint7 = setInterval(changePosition, 700);
+                        hintPlane.textContent = 'bonus 2 !';
+                        planeLeft.textContent = "6/7";
+                        setTimeout(hintGone, 2000);
+                    }else if (planeNr == -3) {
+                        clearInterval(changePositionInt);
+                        hintPlane.textContent = 'bonus 3 !';
+                        planeLeft.textContent = "7/7";
+                        setTimeout(redirectToStatic, 500);
                     }
-                } else if (planeNr ==0 && timeToDisplay.innerHTML[1] == 0){
-                    planeLeft.textContent = "4/4";
-                    setTimeout(redirectToStatic, 500);
-                } else if (planeNr == -1){
-                    hintPlane.textContent = 'bonus 1 !';
-                    planeLeft.textContent = "5/7";
-                    setTimeout(hintGone, 2000);
-                } else if (planeNr == -2){
-                    hintPlane.textContent = 'bonus 2 !';
-                    planeLeft.textContent = "6/7";
-                    setTimeout(hintGone, 2000);
-                }else if (planeNr == -3) {
-                    hintPlane.textContent = 'bonus 3 !';
-                    planeLeft.textContent = "7/7";
-                    setTimeout(redirectToStatic, 500);
                 }
+            } else {
+                console.log('too close');
             }
         }
     }
