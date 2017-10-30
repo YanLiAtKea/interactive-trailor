@@ -10,7 +10,7 @@ let staticSound = document.querySelector('audio#static');
 let lowerVolumeF = setInterval(lowerVolume, 300);
 let volume = 1;
 function lowerVolume(){
-    volume *= .91; // use * for gradual change without sudden stop of music
+    volume *= .79; // use * for gradual change without sudden stop of music
     staticSound.volume = volume;
     if (volume <.03 ){
         staticSound.pause();

@@ -56,6 +56,12 @@ function timer(){
 function redirectToStatic(){
     window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
 }
+/*
+// redirect in case of lose
+function redirectToStatic(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+}
+*/
 // hide plane hint
 function hintGone(){
     hintPlane.textContent = "";
@@ -122,7 +128,7 @@ function changePosition(){
 
 window.onload = function(){
     // timer run down every 10mms
-    setInterval(timer, 10);
+    let timerRunDown = setInterval(timer, 10);
     // scroll the sky img based on key stroke
     window.addEventListener('keypress', moveSky);
     function moveSky(e){
@@ -256,6 +262,8 @@ window.onload = function(){
                         clearInterval(changePositionInt4);
                         changePositionint5 = setInterval(changePosition, 1100);
                         planeLeft.textContent = "4/4";
+                        clearInterval(timerRunDown);
+                        timeToDisplay.classList.remove('flash');
                         setTimeout(redirectToStatic, 500);
                     } else if (planeNr == -1){
                         clearInterval(changePositionInt5);
@@ -273,7 +281,9 @@ window.onload = function(){
                         clearInterval(changePositionInt);
                         hintPlane.textContent = 'bonus 3 !';
                         planeLeft.textContent = "7/7";
-                        setTimeout(redirectToStatic, 500);
+                        clearInterval(timerRunDown);
+                        timeToDisplay.classList.remove('flash');
+                        setTimeout(redirectToStatic, 1000);
                     }
                 }
             } else {

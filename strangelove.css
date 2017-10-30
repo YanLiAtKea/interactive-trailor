@@ -543,8 +543,8 @@ div.staticWrapper {
     background-color: black;
     height: 100vh;
     width: 100vw;
-    padding-top: 3em;
-    padding-left: 2em;
+    padding-top: 10em;
+    padding-left: 7em;
     position: relative;
 }
 @keyframes enlarge {
@@ -575,7 +575,7 @@ div.staticWrapper p {
     display: none;
     color: white;
     border-right: 1px solid white;
-    font-size: 1.2em;
+    font-size: 2em;
 }
 div.staticWrapper p.type {
     overflow: hidden;
@@ -624,7 +624,7 @@ div.staticWrapper p.staticPlaneP4.type {
     display: inherit;
     animation: staticPlaneP4TypingEffect 2s steps(23);
     width: 23ch;
-    font-size: 2em;
+    font-size: 3.5em;
     font-weight: bold;
     margin-top: 1em;
 }
@@ -640,7 +640,7 @@ div.staticWrapper p.staticPlaneP5.type {
     display: inherit;
     animation: staticPlaneP5TypingEffect 4s steps(46);
     width: 46ch;
-    font-size: 2em;
+    font-size: 3em;
 }
 @keyframes staticPlaneP5TypingEffect {
     0% {
@@ -653,8 +653,8 @@ div.staticWrapper p.staticPlaneP5.type {
 div.restart {
     cursor: crosshair;
     display: none;
-    width: 100px;
-    height: 50px;
+    width: 300px;
+    height: 150px;
     border: 3px solid white;
     border-radius: 10px;
     position: absolute;
@@ -662,7 +662,8 @@ div.restart {
     bottom: 20vh;
     color: white;
     text-align: center;
-    padding-top: 13px;
+    padding-top: 37px;
+    font-size: 4em;
 }
 /* pilot */
 .stage1 {
