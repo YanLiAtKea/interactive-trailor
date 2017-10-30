@@ -26,6 +26,8 @@ let changePositionInt1 = setInterval(changePosition, 1700);
 let changePositionInt2; // need to set these here to avoid "undefined" when clearInterval later in different scopes
 let changePositionInt3;
 let changePositionInt4;
+let changePositionInt5;
+let changePositionInt6;
 // timer runs
 function timer(){
     function addZero(num){
@@ -50,6 +52,8 @@ function timer(){
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
             planAudio.pause();
         }
+    } else { // in case time run out
+        redirectToStatic();
     }
 }
 // redirect in case of win
@@ -103,7 +107,7 @@ function changePosition(){
     let X5 = Math.random()*190;
     let Y5 = Math.random()*61;
     let size5 = Math.random();
-    if (.8 > size5 > .5){
+    if (.9 > size5 > .5){
         plane5.style.transform = "scale(" + size5+ ")";
     }
     plane5.style.left = X5 +"vw";
@@ -111,7 +115,7 @@ function changePosition(){
     let X6 = Math.random()*190;
     let Y6 = Math.random()*61;
     let size6 = Math.random();
-    if (.8 >size6 >.5){
+    if (.9 > size6 >.5){
         plane6.style.transform = "scale(" + size6+ ")";
     }
     plane6.style.left = X6 +"vw";
@@ -119,7 +123,7 @@ function changePosition(){
     let X7 = Math.random()*190;
     let Y7 = Math.random()*61;
     let size7 = Math.random();
-    if (.8 >size7 >.5){
+    if (.9 > size7 >.5){
         plane7.style.transform = "scale(" + size7+ ") rotateY(180deg)";
     }
     plane7.style.left = X7 +"vw";
@@ -264,7 +268,8 @@ window.onload = function(){
                         planeLeft.textContent = "4/4";
                         clearInterval(timerRunDown);
                         timeToDisplay.classList.remove('flash');
-                        setTimeout(redirectToStatic, 500);
+                        timeToDisplay.style.transform = "scale(2)";
+                        setTimeout(redirectToStatic, 2500);
                     } else if (planeNr == -1){
                         clearInterval(changePositionInt5);
                         changePositionint6 = setInterval(changePosition, 900);
