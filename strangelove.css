@@ -427,6 +427,14 @@ div.cockpit img.tiltLeft {
         transform: translate(-20px, -10px) rotate(15deg) scale(1.1);
     }
 }
+div.cockpit img.tiltRight {
+    animation: tiltR .67s cubic-bezier(0.24,-0.46, 0.25, 1) forwards;
+}
+@keyframes tiltR {
+    to {
+        transform: translate(20px, 10px) rotate(-15deg) scale(1.1);
+    }
+}
 .cockpit img.shake {
     animation: shake .67s forwards;
 }
@@ -438,10 +446,10 @@ div.cockpit img.tiltLeft {
         transform: translate(0, 0);
     }
 }
-div.cockpit img.tiltLeft.shake, div.cockpit img.afterTiltAndShake.shake {
-    animation: tiltAndShake .67s forwards;
+div.cockpit img.tiltLeft.shake {
+    animation: tiltLeftAndShake .67s forwards;
 }
-@keyframes tiltAndShake {
+@keyframes tiltLeftAndShake {
     0%, 18%, 36%, 54%, 77%, 97% {
         transform: translate(-20px, -.3vh) rotate(15deg) scale(1.1);
     }
@@ -449,9 +457,24 @@ div.cockpit img.tiltLeft.shake, div.cockpit img.afterTiltAndShake.shake {
         transform: translate(-20px,0) rotate(15deg) scale(1.1);
     }
 }
-div.cockpit img.afterTiltAndShake {
-    transform: translate(-20px, -10px) rotate(15deg) scale(1.1);
+div.cockpit img.tiltRight.shake {
+    animation: tiltRightAndShake .67s forwards;
 }
+@keyframes tiltRightAndShake {
+    0%, 18%, 36%, 54%, 77%, 97% {
+        transform: translate(20px, -.3vh) rotate(-15deg) scale(1.1);
+    }
+    9%, 27%, 45%, 65%, 86%, 100% {
+        transform: translate(20px,0) rotate(-15deg) scale(1.1);
+    }
+}
+div.cockpit img.afterTiltRightAndShake {
+    transform: translate(20px, 0) rotate(-15deg) scale(1.1);
+}
+div.cockpit img.afterTiltLeftAndShake {
+    transform: translate(-20px, 0) rotate(15deg) scale(1.1);
+}
+
 /* static */
 span.flash {
     animation: flashBomb 1s infinite;

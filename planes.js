@@ -122,14 +122,16 @@ window.onload = function(){
     // timer run down every 10mms
     setInterval(timer, 10);
     // scroll the sky img based on key stroke
-    window.addEventListener('keydown', moveSky);
+    window.addEventListener('keypress', moveSky);
     function moveSky(e){
         switch (e.key) {
             case "a":
                 moveLeft();
+                cockpit.classList.add('tiltRight');
                 break;
             case "d":
                 moveRight();
+                cockpit.classList.add('tiltLeft');
                 break;
             case "w":
                 moveUp();
@@ -173,7 +175,7 @@ window.onload = function(){
         }
     }
     // tilt plane
-    setInterval(generateRandom, 3000);
+/*    setInterval(generateRandom, 3000);
     function generateRandom(){
         let randomNr = Math.random();
         if (randomNr>.5){
@@ -185,13 +187,11 @@ window.onload = function(){
                 }
             }
         }
-    }
-    // tilt plane back to horizontal with B key
+    }*/
+    // tilt plane back when key released
     window.addEventListener('keyup', tiltBack);
     function tiltBack(e){
-        if (e.key == "b"){
-            cockpit.className = "";
-        }
+        cockpit.className = "";
     }
     // gunfire everytime mouse is clicked, must wait 1.2s between 2 shots
     window.addEventListener('mousedown', gunfire);
@@ -206,8 +206,10 @@ window.onload = function(){
             cockpit.addEventListener('animationend', afterShake);
             function afterShake(){
                 if (cockpit.className == "tiltLeft shake") {
-                    cockpit.className = "afterTiltAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
+                    cockpit.className = "afterTiltLeftAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
                     cockpit.removeEventListener('animationend', afterShake)
+                } else if (cockpit.className == "tiltRight shake") {
+                    cockpit.className = "afterTiltRightAndShake";
                 } else {
                     cockpit.classList.remove('shake');
                     cockpit.removeEventListener('animationend', afterShake)
