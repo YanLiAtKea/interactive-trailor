@@ -13,7 +13,7 @@ function redirectToCodeGuy(){
     window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/code.html');
 }
 function redirectToPilot(){
-    window.location.replace('');
+    window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/pilot.html');
 }
 function redirectToPlane(){
     window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/planes.html');

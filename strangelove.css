@@ -396,8 +396,24 @@ div.cockpit img.afterTiltAndShake {
     transform: translate(-20px, -10px) rotate(15deg) scale(1.1);
 }
 /* static */
+span.flash {
+    animation: flashBomb 1s infinite;
+}
+@keyframes flashBomb {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
 div.staticWrapper {
     background-color: black;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 3em;
+    padding-left: 2em;
+    position: relative;
 }
 @keyframes enlarge {
     to {
@@ -408,6 +424,9 @@ div.staticWrapper {
 div.static {
     width: 100vw;
     height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     background-image: url('images/static.jpg');
     background-size: cover;
 }
@@ -424,7 +443,7 @@ div.staticWrapper p {
     display: none;
     color: white;
     border-right: 1px solid white;
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 div.staticWrapper p.type {
     overflow: hidden;
@@ -458,7 +477,7 @@ div.staticWrapper p.staticPlaneP2.type {
 }
 div.staticWrapper p.staticPlaneP3.type {
     display: inherit;
-    animation: staticPlaneP3TypingEffect 3s steps(34);
+    animation: staticPlaneP3TypingEffect 4s steps(34);
     width: 34ch;
 }
 @keyframes staticPlaneP3TypingEffect {
@@ -471,16 +490,47 @@ div.staticWrapper p.staticPlaneP3.type {
 }
 div.staticWrapper p.staticPlaneP4.type {
     display: inherit;
-    animation: staticPlaneP4TypingEffect 6s steps(69);
-    width: 69ch;
+    animation: staticPlaneP4TypingEffect 2s steps(23);
+    width: 23ch;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 1em;
 }
 @keyframes staticPlaneP4TypingEffect {
     0% {
         width: 0ch;
     }
     100% {
-        width: 69ch;
+        width: 23ch;
     }
+}
+div.staticWrapper p.staticPlaneP5.type {
+    display: inherit;
+    animation: staticPlaneP5TypingEffect 4s steps(46);
+    width: 46ch;
+    font-size: 2em;
+}
+@keyframes staticPlaneP5TypingEffect {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 46ch;
+    }
+}
+div.restart {
+    cursor: crosshair;
+    display: none;
+    width: 100px;
+    height: 50px;
+    border: 3px solid white;
+    border-radius: 10px;
+    position: absolute;
+    right: 10vw;
+    bottom: 20vh;
+    color: white;
+    text-align: center;
+    padding-top: 13px;
 }
 /* pilot */
 .stage1 {
