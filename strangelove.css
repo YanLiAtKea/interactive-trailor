@@ -351,6 +351,56 @@ div.scene img.sky {
         transform-origin: top;
     }
 }
+div.arrowKeys {
+    font-size: 2em;
+    height: 5em;
+    width: 9em;
+    z-index: 2;
+    position: absolute;
+    top: 6em;
+    left: 3em;
+    color: white;
+}
+div.arrowKeys p:nth-of-type(1) {
+    position: absolute;
+    left: 4em;
+}
+div.arrowKeys p:nth-of-type(2) {
+    position: absolute;
+    left: 4em;
+    top: .7em;
+}
+div.arrowKeys p:nth-of-type(3) {
+    position: absolute;
+    left: .7em;
+    top: 1.7em;
+}
+div.arrowKeys p:nth-of-type(4) {
+    position: absolute;
+    left: 2em;
+    top: 1.7em;
+}
+div.arrowKeys p:nth-of-type(5) {
+    position: absolute;
+    left: 7em;
+    top: 1.7em;
+    line-height: 1em;
+}
+div.arrowKeys p:nth-of-type(6) {
+    position: absolute;
+    left: 6em;
+    top: 1.7em;
+}
+div.arrowKeys p:nth-of-type(7) {
+    position: absolute;
+    top: 3.1em;
+    left: 4em;
+}
+div.arrowKeys p:nth-of-type(8) {
+    position: absolute;
+    top: 2.4em;
+    left: 4em;
+}
 div.timerDiv {
     height: 2em;
     width: 9em;
@@ -358,9 +408,9 @@ div.timerDiv {
     top: 0;
     right: 0;
     text-align: center;
-    padding-top: .5em;
+    padding-top: .6em;
     color: white;
-    font-size: 5em;
+    font-size: 6em;
     z-index: 3;
 }
 div.timerDiv.flash {
