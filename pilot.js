@@ -1,39 +1,60 @@
+let planeAudio = document.querySelector('audio#planes');
 let pilot = document.querySelector('#pilotOnBomb');
 let bomb = document.querySelector('#bombWrapper');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
+let randomTime;
+let timeoutBetweenMovement;
+let classes = ["swingLeft", "swingRight", "leanForward", "leanBackward"];
+let index; // index in the classes
+let checkFallDurationInt;
+let newBombClass;
+let currentClass;
+let fallDuration = 0;
+let fail = 0;
 let moveBombInt1;
-// in case user failed
+// redirect to Static
 function redirectToStatic(){
     window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
 }
 // start game with a random timeout for bomb class
-function generateRandomTo(){
-    let randomTimeTo = Math.random();
-    let timeoutTo = randomTimeTo * 3000 + 2000; // so moveBomb runs after 2-5s
-    setTimeout(moveBomb, timeoutTo);
+function generateRandomMovement(){
+    console.log('generate random timeout for movement');
+//    pilot.className = "";
+//    bomb.className = "";
+    randomTime = Math.random();
+    timeoutBetweenMovement = randomTime * 3000 + 2000; // so moveBomb runs bewteen 2-5s
+    setTimeout(moveBomb, timeoutBetweenMovement);
+    console.log(timeoutBetweenMovement);
 }
 // move bomb after random timeout, check user feedback, then move back to centre after random time, chech user feedback again
 function moveBomb(){
-    let classes = ["swingLeft", "swingRight", "leanForward", "leanBackward"];
-    let index = Math.floor(Math.random()*4);
-    let newBombClass = classes[index];
-    let currentClass = bomb.className;
+    index = Math.floor(Math.random()*4);
+    newBombClass = classes[index];
     bomb.className = newBombClass;
-    pilot.className = newBombClass + "Fall"; // if no key is pressed, then die;
-    if (pilot.className.indexOf('Fall')>-1){ // if after 1s no other key is pressed to save the pilot, redirect to static
-        let duration = 0;
-        let checkFallDurationInt = setInterval(checkFallDuration, 10);
+    pilot.className = newBombClass + "Fall"; // if no key is pressed, then will die by default
+    currentClass = bomb.className;
+    console.log("current class: " +currentClass);
+    if (pilot.className.indexOf('Fall')>-1){
+        console.log('fall');
+        checkFallDurationInt = setInterval(checkFallDuration, 10);
         function checkFallDuration(){
-            console.log(duration);
-            duration +=10;
-            if ((pilot.className.indexOf('Fall')>-1) && duration == 1000){
-                redirectToStatic();
+            console.log('checkFall');
+
+            fallDuration += 1;
+            if ((pilot.className.indexOf('Fall')>-1) && fallDuration > 99){ // if after 1s no other key is pressed to save the pilot, redirect to static
+//                redirectToStatic();
+                console.log(fallDuration);
+                fail++;
+                console.log(fail);
+                clearInterval(checkFallDurationInt);
+                generateRandomMovement();
             }
         }
     }
     let currentTime = startTime[3];
     window.addEventListener('keydown', checkUser);
+    // check user key press
     function checkUser(e){
         let keyPressed = e.key;
         let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
@@ -105,18 +126,16 @@ function timer(){
             timeToDisplay.classList.add('flash');
         }
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
-            planAudio.pause();
+            planeAudio.pause();
         }
     } else { // in case time run out
         redirectToStatic();
-        window.removeEventListener('keydown', checkUser);
+//        window.removeEventListener('keydown', checkUser);
     }
 }
 
+
 window.onload= function(){
     let timerRunDown = setInterval(timer, 10);
-    generateRandomTo();
-
-    let randomTimeBack = Math.random();
-    // check user reaction
+    generateRandomMovement();
 }

@@ -824,7 +824,6 @@ body.pilot {
     position: absolute;
     bottom: -3px;
     left: -1vh;
-    border: 3px solid yellow;
 }
 #pilotOnBomb img {
     height: 100%;
@@ -833,51 +832,51 @@ body.pilot {
     animation: swing 2s infinite;
 }
 #bombWrapper.swingLeft {
-    animation: swingLeft 1s;
+    animation: swingLeft 1s 1s;
 }
 #bombWrapper.swingRight {
-    animation: swingRight 1s;
+    animation: swingRight 1s 1s;
 }
 #bombWrapper.lean {
     animation: lean 2s infinite;
 }
 #bombWrapper.leanForward {
-    animation: leanForward 1s;
+    animation: leanForward 1s 1s;
 }
 #bombWrapper.leanBackward {
-    animation: leanBackward 1s;
+    animation: leanBackward 1s 1s;
 }
 #pilotOnBomb.pilotSwing{
     animation: swing 2s .1s infinite;
     transform-origin: bottom center;
 }
 #pilotOnBomb.swingLeft{
-    animation: swingLeft 1s .1s;
+    animation: swingLeft 1s 1.1s;
     transform-origin: bottom center;
 }
 #pilotOnBomb.swingRight{
-    animation: swingRight 1s .1s;
+    animation: swingRight 1s 1.1s;
     transform-origin: bottom center;
 }
 #pilotOnBomb.lean {
     animation: lean 2s infinite;
 }
 #pilotOnBomb.leanForward {
-    animation: leanForward 1s .1s;
+    animation: leanForward 1s 1.1s;
 }
 #pilotOnBomb.leanBackward {
-    animation: leanbackward 1s .1s;
+    animation: leanbackward 1s 1.1s;
 }
 #pilotOnBomb.swingRightFall {
-    animation: fallLeft 1s .07s forwards;
+    animation: fallLeft 1s 1.07s forwards;
 }
 #pilotOnBomb.swingLeftFall {
-    animation: fallRight 1s .07s forwards;
+    animation: fallRight 1s 1.07s forwards;
 }
 #pilotOnBomb.leanBackwardFall {
-    animation: fallForward 1s .07s forwards;
+    animation: fallForward 1s 1.07s forwards;
 }
 #pilotOnBomb.leanForwardFall {
-    animation: fallBackward 1s .07s forwards;
+    animation: fallBackward 1s 1.07s forwards;
     transform-origin: bottom;
 }

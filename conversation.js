@@ -41,6 +41,10 @@ window.onload = function(){
                 RiseRussia();
             }
             if (conversationCount == 1){
+
+                lowerRussiaMore();
+
+
                 topic.textContent = "to tell the opposite side that some from your own troops are attacking them?";
                 conversationCount++;
                 choices[0].innerHTML = "44444";
