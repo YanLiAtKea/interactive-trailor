@@ -133,56 +133,56 @@ function changePosition(){
 }
 // sky movement
 function moveSky(e){
-        switch (e.key) {
-            case "a":
-                moveLeft();
-                cockpit.classList.add('tiltRight');
-                break;
-            case "d":
-                moveRight();
-                cockpit.classList.add('tiltLeft');
-                break;
-            case "w":
-                moveUp();
-                break;
-            case "s":
-                moveDown();
-                break;
-            default:
-        }
-        function moveLeft(){
-            let currentPositionLeft = document.scrollingElement.scrollLeft; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
-            if (currentPositionLeft >= 20){
-                currentPositionLeft-=20;
-                document.scrollingElement.scrollLeft = currentPositionLeft;
-            }
-        }
-        function moveRight(){
-            let widthOfSky = parseInt(window.getComputedStyle(sky).getPropertyValue('width'));
-            let viewportWidth = window.innerWidth;
-            let currentPositionLeft = document.scrollingElement.scrollLeft; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
-            if (currentPositionLeft < (widthOfSky-viewportWidth)){
-                currentPositionLeft+=20;
-                document.scrollingElement.scrollLeft = currentPositionLeft;
-            }
-        }
-        function moveUp(){
-            let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
-            if (currentPositionTop >= 13){
-                currentPositionTop-=13;
-                document.scrollingElement.scrollTop = currentPositionTop;
-            }
-        }
-        function moveDown(){
-            let heightOfSky = parseInt(window.getComputedStyle(sky).getPropertyValue('height'));
-            let viewportHeight = window.innerHeight;
-            let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
-            if (currentPositionTop < (heightOfSky-viewportHeight)){
-                currentPositionTop+=13;
-                document.scrollingElement.scrollTop = currentPositionTop;
-            }
+    switch (e.key) {
+        case "a":
+            moveLeft();
+            cockpit.classList.add('tiltRight');
+            break;
+        case "d":
+            moveRight();
+            cockpit.classList.add('tiltLeft');
+            break;
+        case "w":
+            moveUp();
+            break;
+        case "s":
+            moveDown();
+            break;
+        default:
+    }
+    function moveLeft(){
+        let currentPositionLeft = document.scrollingElement.scrollLeft; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+        if (currentPositionLeft >= 20){
+            currentPositionLeft-=20;
+            document.scrollingElement.scrollLeft = currentPositionLeft;
         }
     }
+    function moveRight(){
+        let widthOfSky = parseInt(window.getComputedStyle(sky).getPropertyValue('width'));
+        let viewportWidth = window.innerWidth;
+        let currentPositionLeft = document.scrollingElement.scrollLeft; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+        if (currentPositionLeft < (widthOfSky-viewportWidth)){
+            currentPositionLeft+=20;
+            document.scrollingElement.scrollLeft = currentPositionLeft;
+        }
+    }
+    function moveUp(){
+        let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+        if (currentPositionTop >= 13){
+            currentPositionTop-=13;
+            document.scrollingElement.scrollTop = currentPositionTop;
+        }
+    }
+    function moveDown(){
+        let heightOfSky = parseInt(window.getComputedStyle(sky).getPropertyValue('height'));
+        let viewportHeight = window.innerHeight;
+        let currentPositionTop = document.scrollingElement.scrollTop; // must use scrollingElement!!! check the scrolling ele's parent doesn't work
+        if (currentPositionTop < (heightOfSky-viewportHeight)){
+            currentPositionTop+=13;
+            document.scrollingElement.scrollTop = currentPositionTop;
+        }
+    }
+}
 // gun fire
 function gunfire(){
     // get the timing for each gun fire

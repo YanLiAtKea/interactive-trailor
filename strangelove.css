@@ -559,12 +559,6 @@ div.staticWrapper {
     padding-left: 7em;
     position: relative;
 }
-@keyframes enlarge {
-    to {
-        transform: scale(7);
-        transform-origin: top;
-    }
-}
 div.static {
     width: 100vw;
     height: 100vh;
@@ -595,7 +589,7 @@ div.staticWrapper p.type {
 }
 div.staticWrapper p.staticPlaneP1.type {
     display: inherit;
-    animation: staticPlaneP1TypingEffect 7s steps(76);
+    animation: staticPlaneP1TypingEffect 5s steps(76);
     width: 76ch;
 }
 @keyframes staticPlaneP1TypingEffect {
@@ -608,7 +602,7 @@ div.staticWrapper p.staticPlaneP1.type {
 }
 div.staticWrapper p.staticPlaneP2.type {
     display: inherit;
-    animation: staticPlaneP2TypingEffect 1s steps(4);
+    animation: staticPlaneP2TypingEffect .7s steps(4);
     width: 4ch;
 }
 @keyframes staticPlaneP2TypingEffect {
@@ -621,7 +615,7 @@ div.staticWrapper p.staticPlaneP2.type {
 }
 div.staticWrapper p.staticPlaneP3.type {
     display: inherit;
-    animation: staticPlaneP3TypingEffect 4s steps(34);
+    animation: staticPlaneP3TypingEffect 2.8s steps(34);
     width: 34ch;
 }
 @keyframes staticPlaneP3TypingEffect {
@@ -634,7 +628,7 @@ div.staticWrapper p.staticPlaneP3.type {
 }
 div.staticWrapper p.staticPlaneP4.type {
     display: inherit;
-    animation: staticPlaneP4TypingEffect 2s steps(23);
+    animation: staticPlaneP4TypingEffect 1.4s steps(23);
     width: 23ch;
     font-size: 3.5em;
     font-weight: bold;
@@ -650,7 +644,7 @@ div.staticWrapper p.staticPlaneP4.type {
 }
 div.staticWrapper p.staticPlaneP5.type {
     display: inherit;
-    animation: staticPlaneP5TypingEffect 4s steps(46);
+    animation: staticPlaneP5TypingEffect 2.8s steps(46);
     width: 46ch;
     font-size: 3em;
 }
@@ -678,6 +672,9 @@ div.restart {
     font-size: 4em;
 }
 /* pilot */
+body.pilot {
+    background-color: #222;
+}
 @keyframes cockpitShake {
     0%, 18%, 36%, 54%, 77%, 97% {
         transform: translate(0, .2vh);

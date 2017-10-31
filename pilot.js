@@ -1,9 +1,5 @@
 let pilot = document.querySelector('#pilotOnBomb');
 let bomb = document.querySelector('#bombWrapper');
-let stage1 = document.querySelector('.stage1');
-let stage2 = document.querySelector('.stage2');
-let stage3 = document.querySelector('.stage3');
-let stage4 = document.querySelector('.stage4');
 let timeToDisplay = document.querySelector('.timerDiv');
 let startTime = [0, 0, 0, 0];
 let moveBombInt1;
@@ -109,13 +105,16 @@ function timer(){
             timeToDisplay.classList.add('flash');
         }
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
-        // time runs out
+            planAudio.pause();
         }
+    } else { // in case time run out
+        redirectToStatic();
+        window.removeEventListener('keydown', checkUser);
     }
 }
 
 window.onload= function(){
-    setInterval(timer, 10);
+    let timerRunDown = setInterval(timer, 10);
     generateRandomTo();
 
     let randomTimeBack = Math.random();

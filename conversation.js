@@ -43,7 +43,7 @@ window.onload = function(){
             if (conversationCount == 1){
                 topic.textContent = "to tell the opposite side that some from your own troops are attacking them?";
                 conversationCount++;
-                choices[0].textContent = "44444";
+                choices[0].innerHTML = "44444";
                 choices[1].textContent = "5555";
                 choices[2].textContent = "666";
             } else if (conversationCount == 2) {
