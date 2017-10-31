@@ -7,9 +7,8 @@ let conversationCount = 1;
 function lowerRussia(){
     let currentBottom = window.getComputedStyle(russia).getPropertyValue('bottom');
     let bottom = parseInt(currentBottom);
-    bottom-=.3;
+    bottom -=.3;
     russia.style.bottom = bottom + "px";
-    ;
 }
 function lowerRussiaMore(){
     let currentBottom = window.getComputedStyle(russia).getPropertyValue('bottom');

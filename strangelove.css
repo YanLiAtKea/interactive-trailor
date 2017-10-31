@@ -182,53 +182,15 @@ div.characters img {
 }
 /* conversation*/
 div.us {
-    width: 40vw;
+    width: 62vw;
     position: fixed;
-    left: 0;
+    left: -1.7vw;
     height: 100vh;
-    overflow: hidden;
+    overflow: visible;
 }
 div.us img {
-    height: 70vh;
+    height: 73vh;
     filter: grayscale(100);
-}
-div.russia {
-    width: 20vw;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    height: 100vh;
-    background: red;
-}
-div.russiaFlag img {
-    height: 60vh;
-    position: absolute;
-    left: 0;
-    filter: grayscale(100);
-}
-div.russiaP {
-    height: 55vh;
-}
-div.russiaP img {
-    width: 80%;
-    position: absolute;
-    bottom: 70px;
-}
-div.trigger {
-    width: 10vw;
-    height: 30px;
-    background: black;
-    position: absolute;
-    bottom: 0;
-    right: 5vw;
-}
-div.conversation {
-    width: 40vw;
-    height: 100vh;
-    position: fixed;
-    left: 40vw;
-    height: 100vh;
-    background: black;
 }
 div.usP {
     position: absolute;
@@ -236,30 +198,77 @@ div.usP {
     left: 0;
 }
 div.usP img{
-    width: 50vw;
-    height: 61vh;
+    width: 130%;
+    height: 62vh;
+}
+div.russia {
+    width: 40vw;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+div.russiaFlag img {
+    height: 100vh;
+    position: absolute;
+    top: 24vh;
+    left: 31vw;
+    filter: grayscale(100);
+    transform: scale(1.7);
 }
 div.russiaP {
-    height: 60vh;
+    height: 80vh;
     width: 30vw;
     position: absolute;
-    bottom: 10vh;
+    bottom: 23vh;
+    left: 13vw;
+    z-index: 2;
+}
+div.russiaP img {
+    width: 67%;
+    position: absolute;
+    left: 30%;
+    bottom: 270px;
+}
+div.trigger {
+    width: 60%;
+    height: 30vh;
+    position: absolute;
+    bottom: -2vh;
+    right: 0;
+}
+div.trigger img {
+    width: 100%;
+}
+div.conversation {
+    width: 40vw;
+    height: 100vh;
+    position: fixed;
+    left: 35vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.9);
 }
 div.finishedConversation {
     height: 63vh;
     width: 100%;
     position: absolute;
     top: 0;
-    border: 2px dotted white;
+    overflow: scroll;
+    padding: 2em;
 }
 div.finishedConversation p {
-    color: gray;
+    color: white;
+    font-size: 3em;
 }
 div.choices {
     height: 37vh;
-    width: 100%;
+    width: 90%;
     position: absolute;
     bottom: 0;
+    background-color: black;
+    margin: 5%;
+    margin-bottom: 0;
 }
 div.choices p {
     color: white;
@@ -331,7 +340,7 @@ div.hint p {
     color: #c0ffa1;
     width: 50vw;
 }
-/* plane */
+/* planes */
 div.scene {
     width: 100vw;
     height: 80vh;
@@ -360,6 +369,7 @@ div.arrowKeys {
     top: 6em;
     left: 3em;
     color: white;
+    pointer-events: none;
 }
 div.arrowKeys p:nth-of-type(1) {
     position: absolute;
@@ -412,6 +422,7 @@ div.timerDiv {
     color: white;
     font-size: 6em;
     z-index: 3;
+    pointer-events: none;
 }
 div.timerDiv.flash {
     animation: timerFlash 1s infinite;
@@ -438,6 +449,7 @@ div.planeCount {
     padding-top: .8em;
     color: white;
     background-color: rgba(255,255,255,.3);
+    pointer-events: none;
 }
 div.planeCount p {
     font-size: 3em;
@@ -527,7 +539,7 @@ div.cockpit img.afterTiltLeftAndShake {
     transform: translate(-20px, 0) rotate(15deg) scale(1.1);
 }
 
-/* static */
+/* static-win */
 span.flash {
     animation: flashBomb 1s infinite;
 }
@@ -666,26 +678,6 @@ div.restart {
     font-size: 4em;
 }
 /* pilot */
-.stage1 {
-    display: inherit;
-}
-.stage2 {
-    display: none;
-}
-.stage3 {
-    display: none;
-}
-.stage4 {
-    display: none;
-}
-div.pilotGameIntro{
-    width: 100vw;
-    background-color: black;
-    padding: 1em;
-    padding-right: 19em;
-    color: white;
-    z-index: -1;
-}
 @keyframes cockpitShake {
     0%, 18%, 36%, 54%, 77%, 97% {
         transform: translate(0, .2vh);
@@ -699,10 +691,10 @@ div.pilotGameIntro{
         transform: rotate(0deg);
     }
     25% {
-        transform: rotate(-50deg);
+        transform: rotate(-40deg);
     }
     75% {
-        transform: rotate(50deg);
+        transform: rotate(40deg);
     }
 }
 @keyframes swingLeft {
@@ -806,7 +798,7 @@ div.pilotGameIntro{
     animation: cockpitShake .67s infinite;
 }
 #bombPerspective {
-    perspective: 250px;
+    perspective: 470px;
 }
 #bombWrapper, #bombPerspective  {
     height: 40vh;
@@ -820,21 +812,25 @@ div.pilotGameIntro{
     transform-origin: bottom center;
 }
 #bomb {
-    height: 20vh;
-    width: 20vh;
-    border-radius: 10vh;
-    background-color: black;
+    height: 33vh;
+    width: 33vh;
     position: absolute;
     left: 10vh;
     overflow: visible;
+}
+#bomb img {
+    height: 100%;
 }
 #pilotOnBomb {
     height: 60vh;
     width: 30vh;
     position: absolute;
     bottom: -3px;
-    left: -5vh;
+    left: -1vh;
     border: 3px solid yellow;
+}
+#pilotOnBomb img {
+    height: 100%;
 }
 #bombWrapper.swing {
     animation: swing 2s infinite;
@@ -854,7 +850,7 @@ div.pilotGameIntro{
 #bombWrapper.leanBackward {
     animation: leanBackward 1s;
 }
-#pilotOnBomb.swing{
+#pilotOnBomb.pilotSwing{
     animation: swing 2s .1s infinite;
     transform-origin: bottom center;
 }

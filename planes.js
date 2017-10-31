@@ -54,6 +54,8 @@ function timer(){
         }
     } else { // in case time run out
         redirectToStatic();
+        window.removeEventListener('mousedown', gunfire);
+        window.removeEventListener('keypress', moveSky);
     }
 }
 // redirect in case of win
@@ -129,13 +131,8 @@ function changePosition(){
     plane7.style.left = X7 +"vw";
     plane7.style.top = Y7 +"vw";
 }
-
-window.onload = function(){
-    // timer run down every 10mms
-    let timerRunDown = setInterval(timer, 10);
-    // scroll the sky img based on key stroke
-    window.addEventListener('keypress', moveSky);
-    function moveSky(e){
+// sky movement
+function moveSky(e){
         switch (e.key) {
             case "a":
                 moveLeft();
@@ -186,6 +183,37 @@ window.onload = function(){
             }
         }
     }
+// gun fire
+function gunfire(){
+    // get the timing for each gun fire
+    nthShooting++;
+    shootingTime[nthShooting] = startTime[3];
+    if ((nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]>100)) || nthShooting ==0){
+        shotAudio.play();
+        cockpit.classList.add('shake');
+        cockpit.addEventListener('animationend', afterShake);
+        function afterShake(){
+            if (cockpit.className == "tiltLeft shake") {
+                cockpit.className = "afterTiltLeftAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
+                cockpit.removeEventListener('animationend', afterShake)
+            } else if (cockpit.className == "tiltRight shake") {
+                cockpit.className = "afterTiltRightAndShake";
+            } else {
+                cockpit.classList.remove('shake');
+                cockpit.removeEventListener('animationend', afterShake)
+            }
+        }
+    } else if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]<=100)){
+        hintPlane.textContent = "you can't fire continuously";
+        setTimeout(hintGone, 1000);
+    }
+}
+
+window.onload = function(){
+    // timer run down every 10mms
+    let timerRunDown = setInterval(timer, 10);
+    // scroll the sky img based on key stroke
+    window.addEventListener('keypress', moveSky);
     // tilt plane back when key released
     window.addEventListener('keyup', tiltBack);
     function tiltBack(e){
@@ -193,30 +221,6 @@ window.onload = function(){
     }
     // gunfire everytime mouse is clicked, must wait 1s between 2 shots
     window.addEventListener('mousedown', gunfire);
-    function gunfire(){
-        // get the timing for each gun fire
-        nthShooting++;
-        shootingTime[nthShooting] = startTime[3];
-        if ((nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]>100)) || nthShooting ==0){
-            shotAudio.play();
-            cockpit.classList.add('shake');
-            cockpit.addEventListener('animationend', afterShake);
-            function afterShake(){
-                if (cockpit.className == "tiltLeft shake") {
-                    cockpit.className = "afterTiltLeftAndShake"; // otherwise (only remove shake from classList) will run tilt animation again as tilt is considered the new class
-                    cockpit.removeEventListener('animationend', afterShake)
-                } else if (cockpit.className == "tiltRight shake") {
-                    cockpit.className = "afterTiltRightAndShake";
-                } else {
-                    cockpit.classList.remove('shake');
-                    cockpit.removeEventListener('animationend', afterShake)
-                }
-            }
-        } else if (nthShooting >= 1 && (shootingTime[nthShooting]-shootingTime[(nthShooting-1)]<=100)){
-            hintPlane.textContent = "you can't fire continuously";
-            setTimeout(hintGone, 1000);
-        }
-    }
     // randomly change position and size of the planes
     changePosition(); // run first time without interval/timeout so that planes don't start at the same position on the webpage
     changePositionInt1; // start interval1
@@ -268,7 +272,9 @@ window.onload = function(){
                         planeLeft.textContent = "4/4";
                         clearInterval(timerRunDown);
                         timeToDisplay.classList.remove('flash');
-                        timeToDisplay.style.transform = "scale(2)";
+                        timeToDisplay.style.transform = "scale(1.5)";
+                        window.removeEventListener('mousedown', gunfire);
+                        window.removeEventListener('keypress', moveSky);
                         setTimeout(redirectToStatic, 2500);
                     } else if (planeNr == -1){
                         clearInterval(changePositionInt5);
@@ -288,6 +294,8 @@ window.onload = function(){
                         planeLeft.textContent = "7/7";
                         clearInterval(timerRunDown);
                         timeToDisplay.classList.remove('flash');
+                        window.removeEventListener('mousedown', gunfire);
+                        window.removeEventListener('keypress', moveSky);
                         setTimeout(redirectToStatic, 1000);
                     }
                 }
