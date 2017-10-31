@@ -25,9 +25,12 @@ div.timerDiv.flash {
     }
 }
 body.pilot {
+    width: 100vw;
+    height: 100vh;
     background-image: url("images/insidePlane.png");
     background-size: cover;
     background-position:  bottom center;
+    background-repeat: no-repeat;
 }
 body.pilot h1 {
     color: white;

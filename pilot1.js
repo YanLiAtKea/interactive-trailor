@@ -10,7 +10,6 @@ let index; // index in the classes
 let checkFallDurationInt;
 let newBombClass;
 let currentClass;
-let fallDuration = 0;
 let fail = 0;
 let moveBombInt1;
 // redirect to Static
@@ -19,32 +18,29 @@ function redirectToStatic(){
 }
 // generate random timeout for bomb to move
 function generateRandomMovement(){
-    console.log('generate random timeout for movement');
     randomTime = Math.random();
     timeoutBetweenMovement = randomTime * 3000 + 2000; // so moveBomb runs bewteen 2-5s
     setTimeout(moveBomb, timeoutBetweenMovement);
 }
 // move bomb after random timeout, check user feedback
 function moveBomb(){
+    currentClass = bomb.className;
     index = Math.floor(Math.random()*4);
     newBombClass = classes[index];
     bomb.className = newBombClass;
     pilot.className = newBombClass + "Fall"; // if no key is pressed, then will die by default
-    currentClass = bomb.className;
-    console.log("current class: " +currentClass);
+    let fallDuration = 0;
     if (pilot.className.indexOf('Fall')>-1){
-        console.log('fall');
         checkFallDurationInt = setInterval(checkFallDuration, 10);
         function checkFallDuration(){
-            console.log('checkFall');
-
             fallDuration += 1;
             if ((pilot.className.indexOf('Fall')>-1) && fallDuration > 99){ // if after 1s no other key is pressed to save the pilot, redirect to static
-                console.log(fallDuration);
                 fail++;
-                console.log(fail);
                 clearInterval(checkFallDurationInt);
                 generateRandomMovement();
+            }
+            if (fail == 5){
+//                redirectToStatic();
             }
         }
     }
@@ -126,8 +122,7 @@ function timer(){
             planeAudio.pause();
         }
     } else { // in case time run out
-        redirectToStatic();
-//        window.removeEventListener('keydown', checkUser);
+//        redirectToStatic(); // !!!!!!!!!!! remember to turn on
     }
 }
 
