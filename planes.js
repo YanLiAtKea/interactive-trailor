@@ -49,13 +49,12 @@ function timer(){
         if (startTime[0] == 0){
             timeToDisplay.classList.add('flash');
         }
-        if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
+        if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) { // in case time run out
             planeAudio.pause();
+            redirectToStaticLose();
+            window.removeEventListener('mousedown', gunfire);
+            window.removeEventListener('keypress', moveSky);
         }
-    } else { // in case time run out
-        redirectToStaticLose();
-        window.removeEventListener('mousedown', gunfire);
-        window.removeEventListener('keypress', moveSky);
     }
 }
 // redirect in case of win
