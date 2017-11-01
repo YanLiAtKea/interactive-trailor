@@ -49,7 +49,8 @@ function moveBomb(){
             fallDuration++;
             if (fallDuration == 223 && (pilot.className.indexOf('DefaultFall')>-1)){ // 223 because animation has delay 1.23s, and runs for 1s, so after 2230, if class hasn't change, then means no key has beed pressed
                 state = false;
-                console.log('no key pressed');
+                fail++;
+                console.log('no key pressed; fail: '+ fail);
                 clearInterval(fallDurationInt);
                 fallDuration = 0;
                 generateRandomMovement();
@@ -68,7 +69,7 @@ function moveBomb(){
                 let pressKeyTime = startTime[3];
                 let keyIndex = allKeys.indexOf(keyPressed);
                 let classIndex = classes.indexOf(newBombClass);
-                if (currentTime < 5000){
+                if (currentTime <= 6000){
                     if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // class change is before animation starts; animation self has 1s delay, so as long as user react within 2s is ok
                         state = true;
                         pilot.className = newBombClass;
@@ -79,19 +80,19 @@ function moveBomb(){
                         fail++;
                         console.log('stage1; wrong key; fail: ' + fail);
                         window.removeEventListener('keydown', checkUser);
-        //                setTimeout(generateRandomMovement, 1200);
+                        generateRandomMovement();
                     } else if ((keyIndex == classIndex)&&(pressKeyTime - currentTime >= 200)) {
                         state = false;
                         fail++;
                         console.log('stage1; too late; fail: ' + fail);
                         window.removeEventListener('keydown', checkUser);
-        //                setTimeout(generateRandomMovement, 1200);
+                        generateRandomMovement();
                     } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime >= 200)){
                         state = false;
                         fail++;
                         console.log('stage1; both wrong; fail: ' + fail);
                         window.removeEventListener('keydown', checkUser);
-        //                setTimeout(generateRandomMovement, 1200);
+                        generateRandomMovement();
                     }
                 } else {
                     console.log('stage 2');
@@ -146,4 +147,10 @@ window.onload= function(){
     let timerRunDown = setInterval(timer, 10);
     // start game with a random timeout for bomb class
     generateRandomMovement();
+    setInterval(checkFail, 10);
+    function checkFail(){
+        if (fail == 3){
+            redirectToStaticLose();
+        }
+    }
 }
