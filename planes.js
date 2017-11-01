@@ -1,4 +1,5 @@
 let planeAudio = document.querySelector('audio#planes');
+let alarmAudio = document.querySelector('audio#alarm');
 let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
 let planeLeft = document.querySelector('.planeCount p');
@@ -49,7 +50,11 @@ function timer(){
         if (startTime[0] == 0){
             timeToDisplay.classList.add('flash');
         }
+        if (startTime[0] == 0 && startTime[1] == 30) {
+            alarmAudio.play();
+        }
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) { // in case time run out
+            alarmAudio.pause();
             planeAudio.pause();
             redirectToStaticLose();
             window.removeEventListener('mousedown', gunfire);

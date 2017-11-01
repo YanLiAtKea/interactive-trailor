@@ -1,4 +1,5 @@
 let startTime = [0, 0, 0, 0];
+let alarmAudio = document.querySelector('audio#alarm');
 let timeToDisplay = document.querySelector('.timerDiv');
 let checkButton = document.querySelector('div.check');
 let hint = document.querySelector('.hintP');
@@ -25,6 +26,10 @@ function timer(){
         if (startTime[0] == 0){
             timeToDisplay.classList.add('flash');
         }
+        if (startTime[0] == 0 && startTime[1] == 30) {
+            alarmAudio.play();
+        }
+
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
             redirectToStaticLose();
         }
