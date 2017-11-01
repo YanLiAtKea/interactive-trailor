@@ -58,7 +58,7 @@ function lowerVolume(){
         function hideCursorAndEnlarge(){
             line5.style.borderRight = "none";
             rollUp.classList.add('roll');
-            setTimeout(showRestart, 3000);
+            setTimeout(showRestart, 4000);
             function showRestart(){
                 restart.style.display = "inherit";
                 restart.addEventListener('click', backToPickCharacter);
