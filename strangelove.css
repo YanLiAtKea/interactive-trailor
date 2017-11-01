@@ -551,14 +551,6 @@ span.flash {
         opacity: 0;
     }
 }
-div.staticWrapper {
-    background-color: black;
-    height: 100vh;
-    width: 100vw;
-    padding-top: 10em;
-    padding-left: 7em;
-    position: relative;
-}
 div.static {
     width: 100vw;
     height: 100vh;
@@ -575,6 +567,26 @@ div.static.turnBlack {
     to {
         transform: rotateX(90deg);
         transform-origin: center;
+    }
+}
+div.staticWrapper {
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 10em;
+    padding-left: 7em;
+    position: relative;
+    overflow: hidden;
+}
+div.rollUp {
+    height: auto;
+}
+div.rollUp.roll {
+    animation: rollUp 7s forwards;
+}
+@keyframes rollUp {
+    to {
+        transform: translate(0, -107vh);
     }
 }
 div.staticWrapper p {
@@ -655,6 +667,24 @@ div.staticWrapper p.staticPlaneP5.type {
     100% {
         width: 46ch;
     }
+}
+div.credit {
+    display: inherit;
+    line-height: 3em;
+    text-align: center;
+    position: absolute;
+    margin-top: 100vh;
+    margin-left: 10vw;
+    padding-right: 7em;
+    border-right: 1px solid white;
+}
+div.credit p {
+    display: inherit;
+    border-right: none;
+}
+div.credit p:first-of-type {
+    font-size: 3em;
+    font-weight: bold;
 }
 div.restart {
     cursor: crosshair;

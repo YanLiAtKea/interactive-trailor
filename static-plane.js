@@ -6,6 +6,7 @@ let line3 = document.querySelector('.staticPlaneP3');
 let line4 = document.querySelector('.staticPlaneP4');
 let line5 = document.querySelector('.staticPlaneP5');
 let restart =document.querySelector('.restart');
+let rollUp = document.querySelector('.rollUp');
 let staticSound = document.querySelector('audio#static');
 let lowerVolumeF = setInterval(lowerVolume, 300);
 let volume = 1;
@@ -58,6 +59,7 @@ function lowerVolume(){
             line5.style.borderRight = "none";
             setTimeout(showRestart, 2000);
             function showRestart(){
+                rollUp.classList.add('roll');
                 restart.style.display = "inherit";
                 restart.addEventListener('click', backToPickCharacter);
                 function backToPickCharacter(){
