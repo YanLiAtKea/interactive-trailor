@@ -601,15 +601,15 @@ div.staticWrapper p.type {
 }
 div.staticWrapper p.staticPlaneP1.type {
     display: inherit;
-    animation: staticPlaneP1TypingEffect 5s steps(76);
-    width: 76ch;
+    animation: staticPlaneP1TypingEffect 4s steps(65);
+    width: 65ch;
 }
 @keyframes staticPlaneP1TypingEffect {
     0% {
         width: 0ch;
     }
     100% {
-        width: 76ch;
+        width: 65ch;
     }
 }
 div.staticWrapper p.staticPlaneP2.type {

@@ -1,4 +1,4 @@
-let planAudio = document.querySelector('audio#planes');
+let planeAudio = document.querySelector('audio#planes');
 let shotAudio = document.querySelector('#gunfire');
 let explosionAudio = document.querySelector('#explosion');
 let planeLeft = document.querySelector('.planeCount p');
@@ -50,7 +50,7 @@ function timer(){
             timeToDisplay.classList.add('flash');
         }
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
-            planAudio.pause();
+            planeAudio.pause();
         }
     } else { // in case time run out
         redirectToStatic();
@@ -296,7 +296,7 @@ window.onload = function(){
                         timeToDisplay.classList.remove('flash');
                         window.removeEventListener('mousedown', gunfire);
                         window.removeEventListener('keypress', moveSky);
-                        setTimeout(redirectToStatic, 1000);
+                        setTimeout(redirectToStatic, 2500);
                     }
                 }
             } else {

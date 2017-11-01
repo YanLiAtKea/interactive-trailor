@@ -2,6 +2,34 @@ let startTime = [0, 0, 0, 0];
 let timeToDisplay = document.querySelector('.timerDiv');
 let checkButton = document.querySelector('div.check');
 let hint = document.querySelector('.hintP');
+let timerRunDown = setInterval(timer, 10);
+
+// timer run down
+function timer(){
+    function addZero(num){
+        if (num <= 9){
+            num = "0" + num;
+        }
+        return num;
+    }
+    let timer = addZero(startTime[0]) + ":" + addZero(startTime[1]) + ":" + addZero(startTime[2]);
+    timeToDisplay.textContent = timer;
+    startTime[3]++;
+    if (startTime[3] < 12000){
+        let minPast = Math.floor((startTime[3]/100)/60);
+        let secPast = Math.floor((startTime[3]/100) - minPast*60);
+        let mmsPast = Math.floor(startTime[3] - secPast * 100 - minPast * 6000);
+        startTime[0] = 1- minPast;
+        startTime[1] = 59 - secPast;
+        startTime[2] = 99 - mmsPast;
+        if (startTime[0] == 0){
+            timeToDisplay.classList.add('flash');
+        }
+        if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
+            redirectToStatic();
+        }
+    }
+}
 function updateHint(){ // set a timeout on this, so each time validation runs, hint will blink once even though the hint it self might stay the same. for user experience
     hint.style.display = "inherit";
 }
@@ -38,6 +66,8 @@ function validate(){
         }
         if (right == 3 && rightRight == 3){
             hint.textContent = "Congrats! You got the code!!";
+            clearInterval(timerRunDown);
+            setTimeout(redirectToStatic, 2500);
         } else if (right == 3 && rightRight !=3){
             hint.style.display = "none";
             setTimeout(updateHint, 30);
@@ -65,34 +95,11 @@ function validate(){
         }
     }
 }
+function redirectToStatic(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+}
+
 window.onload = function(){
-    // timer run down
-    setInterval(timer, 10);
-    function timer(){
-        function addZero(num){
-            if (num <= 9){
-                num = "0" + num;
-            }
-            return num;
-        }
-        let timer = addZero(startTime[0]) + ":" + addZero(startTime[1]) + ":" + addZero(startTime[2]);
-        timeToDisplay.textContent = timer;
-        startTime[3]++;
-        if (startTime[3] < 12000){
-            let minPast = Math.floor((startTime[3]/100)/60);
-            let secPast = Math.floor((startTime[3]/100) - minPast*60);
-            let mmsPast = Math.floor(startTime[3] - secPast * 100 - minPast * 6000);
-            startTime[0] = 1- minPast;
-            startTime[1] = 59 - secPast;
-            startTime[2] = 99 - mmsPast;
-            if (startTime[0] == 0){
-                timeToDisplay.classList.add('flash');
-            }
-            if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
-                planAudio.pause();
-            }
-        }
-    }
     checkButton.addEventListener('click', validate);
     window.addEventListener('keyup', enterKey);
     function enterKey(e){
