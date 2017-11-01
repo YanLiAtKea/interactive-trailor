@@ -209,11 +209,11 @@ body.pilot h1 {
     transform-origin: bottom center;
 }
 #pilotOnBomb.swingLeft{
-    animation: swingLeft 1s 1.1s;
+    animation: swingLeft 1s .1s;
     transform-origin: bottom center;
 }
 #pilotOnBomb.swingRight{
-    animation: swingRight 1s 1.1s;
+    animation: swingRight 1s .1s;
     transform-origin: bottom center;
 }
 #pilotOnBomb.lean {
@@ -221,10 +221,10 @@ body.pilot h1 {
     transform-origin: bottom center;
 }
 #pilotOnBomb.leanForward {
-    animation: leanForward 1s 1.1s;
+    animation: leanForward 1s .1s;
 }
 #pilotOnBomb.leanBackward {
-    animation: leanbackward 1s 1.1s;
+    animation: leanbackward 1s .1s;
 }
 #pilotOnBomb.swingRightFall {
     animation: fallLeft 1s 1.07s forwards;
@@ -237,5 +237,18 @@ body.pilot h1 {
 }
 #pilotOnBomb.leanForwardFall {
     animation: fallBackward 1s 1.07s forwards;
+    transform-origin: bottom;
+}
+#pilotOnBomb.swingRightDefaultFall {
+    animation: fallLeft 1s 1.23s forwards;
+}
+#pilotOnBomb.swingLeftDefaultFall {
+    animation: fallRight 1s 1.23s forwards;
+}
+#pilotOnBomb.leanBackwardDefaultFall {
+    animation: fallForward 1s 1.23s forwards;
+}
+#pilotOnBomb.leanForwardDefaultFall {
+    animation: fallBackward 1s 1.23s forwards;
     transform-origin: bottom;
 }

@@ -1,4 +1,5 @@
 let planeAudio = document.querySelector('audio#planes');
+let alarmAudio = document.querySelector('audio#alarm');
 let pilot = document.querySelector('#pilotOnBomb');
 let bomb = document.querySelector('#bombWrapper');
 let timeToDisplay = document.querySelector('.timerDiv');
@@ -11,154 +12,91 @@ let checkFallDurationInt;
 let newBombClass;
 let currentClass;
 let fail = 0;
+let currentTime;
 let moveBombInt1;
-// redirect to Static
+let fallDuration = 0;
+let fallDurationInt;
+let state = true;
+/// redirect in case of win
 function redirectToStatic(){
     window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+}
+// redirect in case of lose
+function redirectToStaticLose(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html");
 }
 // generate random timeout for bomb to move
 function generateRandomMovement(){
     randomTime = Math.random();
-    timeoutBetweenMovement = randomTime * 3000 + 1000; // so moveBomb runs bewteen 1-3s
+    timeoutBetweenMovement = randomTime * 3000 + 3000; // so moveBomb runs bewteen 3-6s
     setTimeout(moveBomb, timeoutBetweenMovement);
 }
 // move bomb after random timeout, check user feedback
 function moveBomb(){
+    clearInterval(fallDurationInt);
+    fallDuration = 0;
     currentClass = bomb.className;
     index = Math.floor(Math.random()*4);
     newBombClass = classes[index];
-    if (newBombClass != currentClass){
+    if (newBombClass != currentClass){ // avoid the case that no change in class hence no movement displayed
         bomb.className = newBombClass;
+        currentTime = startTime[3]; // when class is changed
         console.log(newBombClass);
-        pilot.className = newBombClass + "Fall"; // if no key is pressed, then will die by default
-        setTimeout(generateRandomMovement, 2000);
+        pilot.className = newBombClass + "DefaultFall"; // already begins to fall when bomb moves, and if no key is pressed, this fall
         checkKeypress();
+        fallDurationInt = setInterval(checkFallDuration, 10);
+        function checkFallDuration(){
+            fallDuration++;
+            if (fallDuration == 223 && (pilot.className.indexOf('DefaultFall')>-1)){ // 223 because animation has delay 1.23s, and runs for 1s, so after 2230, if class hasn't change, then means no key has beed pressed
+                console.log('no key pressed');
+                clearInterval(fallDurationInt);
+                fallDuration = 0;
+                generateRandomMovement();
+            } else if (pilot.className.indexOf('DefaultFall')<0){
+                clearInterval(fallDurationInt);
+                console.log('int cleared');
+            }
+        }
+        // check user key press after each bomb movement
+        function checkKeypress(){
+            window.addEventListener('keydown', checkUser);
+            function checkUser(e){
+                clearInterval(fallDurationInt); // as long as user press a key, reset fallDuration
+                let keyPressed = e.key;
+                let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
+                let pressKeyTime = startTime[3];
+                let keyIndex = allKeys.indexOf(keyPressed);
+                let classIndex = classes.indexOf(newBombClass);
+                if (currentTime < 10000){
+                    if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // class change is before animation starts; animation self has 1s delay, so as long as user react within 2s is ok
+                        console.log('right');
+                        pilot.className = newBombClass;
+                        window.removeEventListener('keydown', checkUser);
+                        generateRandomMovement();
+                    } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime < 200)){
+                        fail++;
+                        console.log('stage1; wrong key; fail: ' + fail);
+        //                setTimeout(generateRandomMovement, 1200);
+                    } else if ((keyIndex == classIndex)&&(pressKeyTime - currentTime >= 200)) {
+                        fail++;
+                        console.log('stage1; too late; fail: ' + fail);
+        //                setTimeout(generateRandomMovement, 1200);
+                    } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime >= 200)){
+                        fail++;
+                        console.log('stage1; both wrong; fail: ' + fail);
+        //                setTimeout(generateRandomMovement, 1200);
+                    }
+                } else {
+                    console.log('stage 2');
+                }
+            }
+        }
     } else {
         console.log('same as before');
-        moveBomb();
-    }
-//    fail++;
-//    console.log("fail: " + fail);
-}
-// check user key press after each bomb movement
-function checkKeypress(){
-    let currentTime = startTime[3];
-    window.addEventListener('keydown', checkUser);
-    function checkUser(e){
-        let keyPressed = e.key;
-        let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
-        let pressKeyTime = startTime[3];
-        let keyIndex = allKeys.indexOf(keyPressed);
-        let classIndex = classes.indexOf(newBombClass);
-        if (currentTime < 10000){
-            console.log('stage 1');
-            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // animation self has 1s delay, so as long as user react within 2s is ok
-                console.log("right key in " + (pressKeyTime-currentTime));
-                pilot.className = newBombClass;
-            } else {
-
-            }
-        }
+        moveBomb(); // get a new class, avoid the case that no change in class hence no movement displayed
     }
 }
 
-
-    /*
-    // check user key press
-    function checkUser(e){
-        let keyPressed = e.key;
-        let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
-        let pressKeyTime = startTime[3];
-        let keyIndex = allKeys.indexOf(keyPressed);
-        let classIndex = classes.indexOf(newBombClass);
-        if (currentTime < 10000){
-            console.log("stage 1: "+ keyIndex, classIndex);
-            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // animation self has 1s delay, so as long as user react within 2s is ok
-                console.log("right key in " + (pressKeyTime-currentTime));
-                pilot.className = newBombClass;
-                window.removeEventListener('keydown', checkUser);
-                setTimeout(generateRandomMovement, 2000);
-            } else {
-                console.log("wrong key 1");
-                window.removeEventListener('keydown', checkUser);
-                fail++;
-                setTimeout(generateRandomMovement, 2000);
-            }
-        } else if (10000 <= currentTime < 12000) {
-            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 150)){
-                console.log("right key in " + pressKeyTime-currentTime);
-                pilot.className = newBombClass;
-                window.removeEventListener('keydown', checkUser);
-                setTimeout(generateRandomMovement, 2000);
-            } else {
-                console.log("wrong key 2");
-                window.removeEventListener('keydown', checkUser);
-                fail++;
-                setTimeout(generateRandomMovement, 2000);
-            }
-        }
-    }
-
-
-
-    let fallDuration = 0;
-    if (pilot.className.indexOf('Fall')>-1){
-        checkFallDurationInt = setInterval(checkFallDuration, 10);
-        function checkFallDuration(){
-            fallDuration += 1;
-            if ((pilot.className.indexOf('Fall')>-1) && fallDuration > 99){ // if after 1s no other key is pressed to save the pilot, redirect to static
-                fail++;
-                clearInterval(checkFallDurationInt);
-                generateRandomMovement();
-            } else {
-
-
-
-
-            }
-            if (fail == 5){
-//                redirectToStatic();
-            }
-        }
-        let currentTime = startTime[3];
-        window.addEventListener('keydown', checkUser);
-        // check user key press
-        function checkUser(e){
-            console.log('check key');
-            let keyPressed = e.key;
-            let allKeys = ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"];
-            let pressKeyTime = startTime[3];
-            let keyIndex = allKeys.indexOf(keyPressed);
-            let classIndex = classes.indexOf(newBombClass);
-            if (currentTime < 10000){
-                console.log(keyIndex, classIndex);
-                if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // animation self has 1s delay, so as long as user react within 2s is ok
-                    console.log("right key in " + pressKeyTime-currentTime);
-                    pilot.className = newBombClass;
-                    window.removeEventListener('keydown', checkUser);
-                    generateRandomMovement();
-                } else {
-                    console.log("wrong key 1");
-                    window.removeEventListener('keydown', checkUser);
-                    fail++;
-                    generateRandomMovement();
-                }
-            } else if (10000 <= currentTime < 12000) {
-                if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 150)){
-                    console.log("right key in " + pressKeyTime-currentTime);
-                    pilot.className = newBombClass;
-                    window.removeEventListener('keydown', checkUser);
-                    generateRandomMovement();
-                } else {
-                    console.log("wrong key 2");
-                    window.removeEventListener('keydown', checkUser);
-                    fail++;
-                    generateRandomMovement();
-                }
-            }
-        }
-    }
-}*/
 // timer runs
 function timer(){
     function addZero(num){
@@ -170,21 +108,24 @@ function timer(){
     let timer = addZero(startTime[0]) + ":" + addZero(startTime[1]) + ":" + addZero(startTime[2]);
     timeToDisplay.textContent = timer;
     startTime[3]++;
-    if (startTime[3] < 12000){
+    if (startTime[3] < 6000){
         let minPast = Math.floor((startTime[3]/100)/60);
         let secPast = Math.floor((startTime[3]/100) - minPast*60);
         let mmsPast = Math.floor(startTime[3] - secPast * 100 - minPast * 6000);
-        startTime[0] = 1- minPast;
+        startTime[0] = 0- minPast;
         startTime[1] = 59 - secPast;
         startTime[2] = 99 - mmsPast;
-        if (startTime[0] == 0){
+        if (startTime[1] == 30){
             timeToDisplay.classList.add('flash');
+        }
+        if (startTime[1] == 15){
+            alarmAudio.play();
         }
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
             planeAudio.pause();
+            planeAudio.pause();
+            redirectToStaticLose();
         }
-    } else { // in case time run out
-//        redirectToStatic(); // !!!!!!!!!!! remember to turn on
     }
 }
 
@@ -194,84 +135,3 @@ window.onload= function(){
     // start game with a random timeout for bomb class
     generateRandomMovement();
 }
-
-
-
-/*
-
-
-let keyIndex = allKeys.indexOf(keyPressed);
-30
-        let classIndex = classes.indexOf(newBombClass);
-31
-        if (currentTime < 3000){
-32
-            if (pressKeyTime - currentTime < 70){
-33
-                console.log(pressKeyTime-currentTime);
-34
-                pilot.className = newBombClass;
-35
-                window.removeEventListener('keydown', checkUser);
-36
-                generateRandomTo();
-37
-            } else {
-38
-                pilot.className = newBombClass + "Fall";
-39
-                window.removeEventListener('keydown', checkUser);
-40
-                console.log('dead');
-41
-            }
-42
-        } else if (3000 <= currentTime < 10000){
-47
-            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 100)){
-48
-                console.log(pressKeyTime-currentTime);
-49
-                pilot.className = newBombClass;
-50
-                window.removeEventListener('keydown', checkUser);
-51
-                generateRandomTo();
-52
-            } else {
-53
-                pilot.className = newBombClass + "Fall";
-54
-                window.removeEventListener('keydown', checkUser);
-55
-                console.log('dead');
-56
-            }
-57
-        } else if (10000 <= currentTime < 12000) {
-58
-            stage2.style.display = "none";
-59
-            stage3.style.display = "inherit";
-60
-            stage3.style.color = "red";
-61
-            if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 50)){
-62
-                console.log(pressKeyTime-currentTime);
-63
-                pilot.className = newBombClass;
-64
-                window.removeEventListener('keydown', checkUser);
-65
-                generateRandomTo();
-66
-            } else {
-67
-                pilot.className = newBombClass + "Fall";
-68
-                window.removeEventListener('keydown', checkUser);
-69
-                console.log('dead');
-70
-            }  */
