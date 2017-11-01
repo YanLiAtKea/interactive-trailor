@@ -48,6 +48,7 @@ function moveBomb(){
         function checkFallDuration(){
             fallDuration++;
             if (fallDuration == 223 && (pilot.className.indexOf('DefaultFall')>-1)){ // 223 because animation has delay 1.23s, and runs for 1s, so after 2230, if class hasn't change, then means no key has beed pressed
+                state = false;
                 console.log('no key pressed');
                 clearInterval(fallDurationInt);
                 fallDuration = 0;
@@ -67,23 +68,29 @@ function moveBomb(){
                 let pressKeyTime = startTime[3];
                 let keyIndex = allKeys.indexOf(keyPressed);
                 let classIndex = classes.indexOf(newBombClass);
-                if (currentTime < 10000){
+                if (currentTime < 5000){
                     if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // class change is before animation starts; animation self has 1s delay, so as long as user react within 2s is ok
-                        console.log('right');
+                        state = true;
                         pilot.className = newBombClass;
                         window.removeEventListener('keydown', checkUser);
                         generateRandomMovement();
                     } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime < 200)){
+                        state = false;
                         fail++;
                         console.log('stage1; wrong key; fail: ' + fail);
+                        window.removeEventListener('keydown', checkUser);
         //                setTimeout(generateRandomMovement, 1200);
                     } else if ((keyIndex == classIndex)&&(pressKeyTime - currentTime >= 200)) {
+                        state = false;
                         fail++;
                         console.log('stage1; too late; fail: ' + fail);
+                        window.removeEventListener('keydown', checkUser);
         //                setTimeout(generateRandomMovement, 1200);
                     } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime >= 200)){
+                        state = false;
                         fail++;
                         console.log('stage1; both wrong; fail: ' + fail);
+                        window.removeEventListener('keydown', checkUser);
         //                setTimeout(generateRandomMovement, 1200);
                     }
                 } else {
@@ -121,7 +128,12 @@ function timer(){
         if (startTime[1] == 15){
             alarmAudio.play();
         }
-        if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
+        if ((startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) && state){
+            planeAudio.pause();
+            planeAudio.pause();
+            redirectToStatic();
+        }
+        if ((startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) && !state) {
             planeAudio.pause();
             planeAudio.pause();
             redirectToStaticLose();
