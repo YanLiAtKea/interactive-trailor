@@ -1,3 +1,14 @@
+div.hearts {
+    width: 19vw;
+    position: absolute;
+    bottom: 3em;
+    left: 3em;
+}
+div.hearts img {
+    width: 5vw;
+    margin-left: 1vw;
+    filter: grayscale(70%);
+}
 div.timerDiv {
     height: 2em;
     width: 7em;

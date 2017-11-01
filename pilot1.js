@@ -1,5 +1,8 @@
 let planeAudio = document.querySelector('audio#planes');
 let alarmAudio = document.querySelector('audio#alarm');
+let heart1 = document.querySelector('#heart1');
+let heart2 = document.querySelector('#heart2');
+let heart3 = document.querySelector('#heart3');
 let pilot = document.querySelector('#pilotOnBomb');
 let bomb = document.querySelector('#bombWrapper');
 let timeToDisplay = document.querySelector('.timerDiv');
@@ -149,6 +152,13 @@ window.onload= function(){
     generateRandomMovement();
     setInterval(checkFail, 10);
     function checkFail(){
+        if (fail == 1){
+            heart3.style.display = "none";
+        }
+        if (fail == 2){
+            heart3.style.display = "none";
+            heart2.style.display = "none";
+        }
         if (fail == 3){
             redirectToStaticLose();
         }
