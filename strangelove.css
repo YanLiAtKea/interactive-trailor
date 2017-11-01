@@ -612,6 +612,19 @@ div.staticWrapper p.staticPlaneP1.type {
         width: 65ch;
     }
 }
+div.staticWrapper p.staticPlaneP1Lose.type {
+    display: inherit;
+    animation: staticPlaneP1LoseTypingEffect 3s steps(40);
+    width: 40ch;
+}
+@keyframes staticPlaneP1LoseTypingEffect {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 40ch;
+    }
+}
 div.staticWrapper p.staticPlaneP2.type {
     display: inherit;
     animation: staticPlaneP2TypingEffect .7s steps(4);
@@ -625,6 +638,19 @@ div.staticWrapper p.staticPlaneP2.type {
         width: 4ch;
     }
 }
+div.staticWrapper p.staticPlaneP2Lose.type {
+    display: inherit;
+    animation: staticPlaneP2LoseTypingEffect .5s steps(3);
+    width: 3ch;
+}
+@keyframes staticPlaneP2LoseTypingEffect {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 3ch;
+    }
+}
 div.staticWrapper p.staticPlaneP3.type {
     display: inherit;
     animation: staticPlaneP3TypingEffect 2.8s steps(34);
@@ -636,6 +662,19 @@ div.staticWrapper p.staticPlaneP3.type {
     }
     100% {
         width: 34ch;
+    }
+}
+div.staticWrapper p.staticPlaneP3Lose.type {
+    display: inherit;
+    animation: staticPlaneP3LoseTypingEffect 2s steps(26);
+    width: 26ch;
+}
+@keyframes staticPlaneP3LoseTypingEffect {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 26ch;
     }
 }
 div.staticWrapper p.staticPlaneP4.type {

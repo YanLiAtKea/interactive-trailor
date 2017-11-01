@@ -26,7 +26,7 @@ function timer(){
             timeToDisplay.classList.add('flash');
         }
         if (startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) {
-            redirectToStatic();
+            redirectToStaticLose();
         }
     }
 }
@@ -95,8 +95,13 @@ function validate(){
         }
     }
 }
+// redirect in case of win
 function redirectToStatic(){
     window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+}
+// redirect in case of lose
+function redirectToStaticLose(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html");
 }
 
 window.onload = function(){

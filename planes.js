@@ -53,7 +53,7 @@ function timer(){
             planeAudio.pause();
         }
     } else { // in case time run out
-        redirectToStatic();
+        redirectToStaticLose();
         window.removeEventListener('mousedown', gunfire);
         window.removeEventListener('keypress', moveSky);
     }
@@ -62,12 +62,12 @@ function timer(){
 function redirectToStatic(){
     window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
 }
-/*
+
 // redirect in case of lose
-function redirectToStatic(){
-    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+function redirectToStaticLose(){
+    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html");
 }
-*/
+
 // hide plane hint
 function hintGone(){
     hintPlane.textContent = "";
@@ -272,7 +272,7 @@ window.onload = function(){
                         planeLeft.textContent = "4/4";
                         clearInterval(timerRunDown);
                         timeToDisplay.classList.remove('flash');
-                        timeToDisplay.style.transform = "scale(1.5)";
+//                        timeToDisplay.style.transform = "scale(1.5)";
                         window.removeEventListener('mousedown', gunfire);
                         window.removeEventListener('keypress', moveSky);
                         setTimeout(redirectToStatic, 2500);
