@@ -70,7 +70,7 @@ img.phone {
     transform: rotate(325deg);
 }
 img.phone.blink {
-    animation: blinkPhone 1.2s infinite;
+    animation: blinkPhone 1.2s ease-out infinite;
 }
 @keyframes blinkPhone {
     from {
@@ -79,6 +79,14 @@ img.phone.blink {
     to {
         opacity: 1;
     }
+}
+p.pickup {
+    display: none;
+    position: absolute;
+    bottom: 5em;
+    left: 70vw;
+    color: white;
+    font-size: 1.4em;
 }
 /* map*/
 div.map {
@@ -91,10 +99,10 @@ div.map {
 }
 div.map h1 {
     position: absolute;
-    bottom: 13vh;
+    bottom: 7vh;
     font-size: 3em;
     color: #777;
-    margin-left: 27vw;
+    margin-left: 28vw;
 }
 /* characters*/
 div.taskDes {

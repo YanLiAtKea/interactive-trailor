@@ -16,7 +16,7 @@ let staticSound = document.querySelector('audio#static');
 let lowerVolumeF = setInterval(lowerVolume, 300);
 let volume = 1;
 function lowerVolume(){
-    volume *= .79; // use * for gradual change without sudden stop of music
+    volume *= .49; // use * for gradual change without sudden stop of music
     staticSound.volume = volume;
     if (volume <.03 ){
         staticSound.pause();
@@ -37,14 +37,14 @@ function lowerVolume(){
         }
         function hideCursorAndShowLine3(){
             line2.style.borderRight = "none";
-            setTimeout(showLine3, 2000);
+            setTimeout(showLine3, 1500);
             function showLine3(){
                 line3.classList.add('type');
                 line3.addEventListener('animationend', hideCursorAndShowLine4)
             }
         }
         function hideCursorAndShowLine4(){
-            setTimeout(showLine4, 3000);
+            setTimeout(showLine4, 1500);
             function showLine4(){
                 line3.style.borderRight = "none";
                 line4.classList.add('type');
