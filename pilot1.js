@@ -159,7 +159,7 @@ window.onload= function(){
             heart3.style.display = "none";
             heart2.style.display = "none";
         }
-        if (fail == 3){
+        if (fail >= 3){
             redirectToStaticLose();
         }
     }
