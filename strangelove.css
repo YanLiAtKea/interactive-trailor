@@ -293,7 +293,7 @@ div.choices {
     height: 43vh;
     width: 96%;
     position: absolute;
-    bottom: 2vh;
+    bottom: 0;
     background-color: black;
     margin-bottom: 2vh;
     font-size: 1.4em;
@@ -307,6 +307,9 @@ div.choices li {
     margin-left: 1em;
     margin-bottom: .7em;
 }
+div.choices li:first-of-type {
+    margin-top: 1em;
+}
 div.script {
     width: 100%;
     height: 100%;
@@ -316,7 +319,7 @@ div.choices p {
     font-size: 1.3em;
 }
 div.choices p.topic {
-    line-height: 3em;
+    line-height: 1.5em;
 }
 div.choices button {
     position: absolute;
