@@ -1,4 +1,5 @@
 let demo = document.querySelector('.demo');
+let h1 = document.querySelector('h1');
 let planeAudio = document.querySelector('audio#planes');
 let alarmAudio = document.querySelector('audio#alarm');
 let heart1 = document.querySelector('#heart1');
@@ -157,7 +158,7 @@ window.onload= function(){
         pilot.className = "";
         bomb.className = "";
         demo.textContent = "GO!";
-        setTimeout(hideDemo, 500);
+        setTimeout(hideDemo, 1500);
         function hideDemo(){
             demo.style.display = "none";
         }
@@ -173,13 +174,14 @@ window.onload= function(){
             heart3.style.display = "none";
         }
         if (fail == 2){
-            heart3.style.display = "none";
             heart2.style.display = "none";
         }
         if (fail >= 3){
+            heart1.style.display = "none";
             clearInterval(timerRunDown);
+            clearTimeout(moveBomb);
             timeToDisplay.classList.remove('flash');
-            redirectToStaticLose();
+            setTimeout(redirectToStaticLose, 2500);
         }
     }
 

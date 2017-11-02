@@ -462,8 +462,8 @@ p.hintPlane {
     font-size: 2em;
 }
 div.plane {
-    width: 70px;
-    height: 30px;
+    width: 100px;
+    height: 40px;
     position: absolute;
     cursor: crosshair;
 }
@@ -614,15 +614,15 @@ div.staticWrapper p.staticPlaneP1.type {
 }
 div.staticWrapper p.staticPlaneP1Lose.type {
     display: inherit;
-    animation: staticPlaneP1LoseTypingEffect 3s steps(40);
-    width: 40ch;
+    animation: staticPlaneP1LoseTypingEffect 3s steps(38);
+    width: 38ch;
 }
 @keyframes staticPlaneP1LoseTypingEffect {
     0% {
         width: 0ch;
     }
     100% {
-        width: 40ch;
+        width: 38ch;
     }
 }
 div.staticWrapper p.staticPlaneP2.type {
@@ -710,12 +710,25 @@ div.staticWrapper p.staticPlaneP5.type {
 div.credit {
     display: inherit;
     line-height: 3em;
-    text-align: center;
     position: absolute;
     margin-top: 100vh;
     margin-left: 10vw;
     padding-right: 7em;
     border-right: 1px solid white;
+    text-align: center;
+}
+div.credit div.left {
+    float: left;
+    text-align: right;
+    padding-right: 1em;
+}
+div.credit div.left p:first-of-type, div.credit div.right p:first-of-type {
+    font-size: 2em;
+}
+div.credit div.right {
+    float: right;
+    text-align: left;
+    padding-left: 1em;
 }
 div.credit p {
     display: inherit;
@@ -742,12 +755,13 @@ div.restart {
 }
 /* pilot */
 div.demo {
-    font-size: 7em;
+    font-size: 2.6em;
     font-weight: bolder;
     color: white;
     position: fixed;
-    top: 30vh;
-    left: 30vh;
+    top: 10vh;
+    left: 15vw;
+    width: 70vw;
 }
 div.hearts {
     width: 20vw;
@@ -761,6 +775,7 @@ div.hearts img {
     filter: grayscale(70%);
 }
 body.pilot {
+    position: relative;
     width: 100vw;
     height: 100vh;
     background-image: url("images/insidePlane.png");
@@ -769,6 +784,9 @@ body.pilot {
     background-repeat: no-repeat;
 }
 body.pilot h1 {
+    display: none;
+    position: absolute;
+    top:0;
     color: white;
     margin-top: 1em;
 }
@@ -863,7 +881,7 @@ body.pilot h1 {
     height: 60vh;
     width: 30vh;
     position: absolute;
-    left: 4vh;
+    left: -1vh;
     bottom: 3vh;
 }
 #pilotOnBomb img {
@@ -992,213 +1010,9 @@ body.pilot h1 {
     transform-origin: bottom;
 }
 
-/* pilot
-body.pilot {
-    background-color: #222;
+/* presentation*/
+body.presentation {
+    background-image: url(images/presentation/9.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-@keyframes cockpitShake {
-    0%, 18%, 36%, 54%, 77%, 97% {
-        transform: translate(0, .2vh);
-    }
-    9%, 27%, 45%, 65%, 86%, 100% {
-        transform: translate(0, 0);
-    }
-}
-@keyframes swing {
-    0%, 50%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-40deg);
-    }
-    75% {
-        transform: rotate(40deg);
-    }
-}
-@keyframes swingLeft {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(-50deg);
-    }
-}
-@keyframes swingRight {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(50deg);
-    }
-}
-@keyframes lean {
-    0%, 50%, 100% {
-        transform: rotateX(0deg);
-    }
-    25% {
-        transform: rotateX(-55deg);
-    }
-    75% {
-        transform: rotateX(65deg);
-    }
-}
-@keyframes leanForward {
-    0%, 100% {
-        transform: rotateX(0deg);
-    }
-    50% {
-        transform: rotateX(-55deg);
-    }
-}
-@keyframes leanBackward {
-    0%, 100% {
-        transform: rotateX(0deg);
-    }
-    50% {
-        transform: rotateX(65deg);
-    }
-}
-@keyframes fallLeft {
-    0% {
-        transform: rotate(0) translate(0,0);
-        animation-timing-function: ease-out;
-    }
-    50% {
-        transform: rotateZ(-150deg) translate(-30vh, -30vh);
-        transform-origin: bottom left;
-    }
-    100% {
-        transform: rotateZ(-90deg) rotateY(85deg) translate(-20vh, -10vh);
-        transform-origin: bottom left;
-    }
-}
-@keyframes fallRight {
-    0% {
-        transform: rotate(0) translate(0,0);
-        animation-timing-function: ease-out;
-    }
-    50% {
-        transform: rotateZ(150deg) translate(20vh, -20vh);
-        transform-origin: bottom right;
-    }
-    100% {
-        transform: rotateZ(90deg) rotateY(85deg) translate(20vh, 0);
-        transform-origin: bottom right;
-    }
-}
-@keyframes fallForward {
-    0% {
-        transform: rotateX(0deg);
-        transform-origin: center;
-    }
-    50%, 100% {
-        transform: rotateX(-90deg) scale(2);
-        transform-origin: center;
-        opacity: 0;
-    }
-}
-@keyframes fallBackward {
-    0% {
-        transform: rotateX(0deg);
-        transform-origin: center;
-    }
-    50%, 100% {
-        transform: rotateX(90deg) scale(.5);
-        transform-origin: center;
-        opacity: 0;
-    }
-}
-.insidePlane {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    bottom: 0;
-    animation: cockpitShake .67s infinite;
-}
-#bombPerspective {
-    perspective: 470px;
-}
-#bombWrapper, #bombPerspective  {
-    height: 40vh;
-    width: 40vh;
-    position: absolute;
-    bottom: 0;
-    left: 60vh;
-}
-#bombWrapper {
-    left: 0;
-    transform-origin: bottom center;
-}
-#bomb {
-    height: 33vh;
-    width: 33vh;
-    position: absolute;
-    left: 10vh;
-    overflow: visible;
-}
-#bomb img {
-    height: 100%;
-}
-#pilotOnBomb {
-    height: 60vh;
-    width: 30vh;
-    position: absolute;
-    bottom: -3px;
-    left: -1vh;
-}
-#pilotOnBomb img {
-    height: 100%;
-}
-#bombWrapper.swing {
-    animation: swing 2s infinite;
-}
-#bombWrapper.swingLeft {
-    animation: swingLeft 1s 1s;
-}
-#bombWrapper.swingRight {
-    animation: swingRight 1s 1s;
-}
-#bombWrapper.lean {
-    animation: lean 2s infinite;
-}
-#bombWrapper.leanForward {
-    animation: leanForward 1s 1s;
-}
-#bombWrapper.leanBackward {
-    animation: leanBackward 1s 1s;
-}
-#pilotOnBomb.pilotSwing{
-    animation: swing 2s .1s infinite;
-    transform-origin: bottom center;
-}
-#pilotOnBomb.swingLeft{
-    animation: swingLeft 1s 1.1s;
-    transform-origin: bottom center;
-}
-#pilotOnBomb.swingRight{
-    animation: swingRight 1s 1.1s;
-    transform-origin: bottom center;
-}
-#pilotOnBomb.lean {
-    animation: lean 2s infinite;
-}
-#pilotOnBomb.leanForward {
-    animation: leanForward 1s 1.1s;
-}
-#pilotOnBomb.leanBackward {
-    animation: leanbackward 1s 1.1s;
-}
-#pilotOnBomb.swingRightFall {
-    animation: fallLeft 1s 1.07s forwards;
-}
-#pilotOnBomb.swingLeftFall {
-    animation: fallRight 1s 1.07s forwards;
-}
-#pilotOnBomb.leanBackwardFall {
-    animation: fallForward 1s 1.07s forwards;
-}
-#pilotOnBomb.leanForwardFall {
-    animation: fallBackward 1s 1.07s forwards;
-    transform-origin: bottom;
-}
-*/
