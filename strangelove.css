@@ -807,9 +807,10 @@ div.credit p {
     display: inherit;
     border-right: none;
 }
-div.credit p.creditLine1 {
+div.credit h1 {
     font-size: 3em;
     font-weight: bold;
+    color: white;
 }
 div.restart {
     cursor: crosshair;
