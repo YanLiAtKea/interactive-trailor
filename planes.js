@@ -1,3 +1,8 @@
+history.pushState(null, null, location.href);
+window.onpopstate = function(event) {
+    history.go(1);
+};
+
 let planeAudio = document.querySelector('audio#planes');
 let alarmAudio = document.querySelector('audio#alarm');
 let shotAudio = document.querySelector('#gunfire');
@@ -64,12 +69,12 @@ function timer(){
 }
 // redirect in case of win
 function redirectToStatic(){
-    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+    window.location = "http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html";
 }
 
 // redirect in case of lose
 function redirectToStaticLose(){
-    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html");
+    window.location = "http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html";
 }
 
 // hide plane hint

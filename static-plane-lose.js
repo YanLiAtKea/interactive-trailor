@@ -1,3 +1,8 @@
+history.pushState(null, null, location.href);
+window.onpopstate = function(event) {
+    history.go(1);
+};
+
 let bomb = document.querySelector('div.staticWrapper span');
 let staticDiv = document.querySelector('div.static');
 let line1 = document.querySelector('.staticPlaneP1Lose');

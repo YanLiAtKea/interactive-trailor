@@ -1,3 +1,8 @@
+history.pushState(null, null, location.href);
+window.onpopstate = function(event) {
+    history.go(1);
+};
+
 let demo = document.querySelector('.demo');
 let h1 = document.querySelector('h1');
 let planeAudio = document.querySelector('audio#planes');
@@ -24,11 +29,11 @@ let fallDurationInt;
 let state = true;
 /// redirect in case of win
 function redirectToStatic(){
-    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html");
+    window.location = "http://onestepfurther.science/kea/02-animation/strangelove/static-plane.html";
 }
 // redirect in case of lose
 function redirectToStaticLose(){
-    window.location.replace("http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html");
+    window.location = "http://onestepfurther.science/kea/02-animation/strangelove/static-plane-lose.html";
 }
 // generate random timeout for bomb to move
 function generateRandomMovement(){
