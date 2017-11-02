@@ -13,19 +13,22 @@ div.roundTable {
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-image: url(images/main-roundTable.jpg);
     background-size: cover;
+}
+div.roundTable img#roundTable {
+    width: 100vw;
+    height: 100vh;
 }
 div.introDiv {
     height: 5em;
     position: absolute;
-    bottom: 0;
+    bottom: 4em;
     left: 2em;
 }
 div.introDiv p{
     color: white;
     display: none;
-    font-size: 1.2em;
+    font-size: 2.5em;
 }
 div.introDiv p.type{
     overflow: hidden;
@@ -60,13 +63,14 @@ div.introDiv p.introP2.type {
 }
 img.phone {
     position: absolute;
-    width: 30px;
-    bottom: 119px;
-    left: 366px;
+    width: 110px;
+    bottom: 36vh;
+    left: 71vw;
     opacity: 0;
+    transform: rotate(325deg);
 }
 img.phone.blink {
-    animation: blinkPhone 1.5s infinite;
+    animation: blinkPhone 1.2s infinite;
 }
 @keyframes blinkPhone {
     from {
@@ -184,7 +188,7 @@ div.characters img {
 div.us {
     width: 62vw;
     position: fixed;
-    left: -1.7vw;
+    left: -1.9vw;
     height: 100vh;
     overflow: visible;
 }
@@ -195,11 +199,11 @@ div.us img {
 div.usP {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: -2.5vw;
 }
 div.usP img{
-    width: 130%;
-    height: 62vh;
+    width: 140%;
+    height: 65vh;
 }
 div.russia {
     width: 40vw;
@@ -241,48 +245,101 @@ div.trigger {
 div.trigger img {
     width: 100%;
 }
+div.usFlag {
+    position: absolute;
+    top: -5.5vh;
+    left: -2vw;
+    height: 100%;
+}
 div.conversation {
     width: 40vw;
     height: 100vh;
     position: fixed;
-    left: 35vw;
+    left: 39vw;
     height: 100vh;
     background-color: rgba(0,0,0,.9);
 }
 div.finishedConversation {
-    height: 63vh;
-    width: 100%;
+    height: 50vh;
+    width: 98%;
     position: absolute;
     top: 0;
     overflow: scroll;
-    padding: 2em;
+    font-size: 1.5em;
+    color: white;
+    padding-left: .5vw;
 }
+/*
 div.finishedConversation p {
     color: white;
     font-size: 3em;
-}
+}*/
 div.choices {
-    height: 37vh;
-    width: 90%;
+    height: 43vh;
+    width: 96%;
     position: absolute;
-    bottom: 0;
+    bottom: 2vh;
     background-color: black;
-    margin: 5%;
-    margin-bottom: 0;
-    cursor: pointer;
-}
-div.choices p {
+    margin-bottom: 2vh;
+    font-size: 1.4em;
+    padding: 10px;
     color: white;
-    font-size: .9em;
+}
+div.choices li {
+    list-style-type: circle;
+    color: white;
+    cursor: pointer;
+    margin-left: 1em;
 }
 div.script {
     width: 100%;
     height: 100%;
 }
-div.script p {
+div.choices p {
     color: white;
-    left: 1em;
+    font-size: 1em;
+
 }
+div.choices~p {
+    line-height: 2em;
+}
+div.choices button {
+    position: absolute;
+    bottom: 0;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    font-family: monospace bold;
+    font-size: .6em;
+
+}
+.hide {
+    display: none;
+}
+
+body.conversation .hint {
+    position: absolute;
+    bottom: 0;
+    left: 6vw;
+    font-size: .8em;
+    color: white;
+    font-family: monospace;
+    z-index: 9;
+
+}
+
+.work {
+    position: absolute;
+    bottom: -8px;
+    left: 180px;
+    z-index: 99;
+    background-color: black;
+}
+
+.tip {
+    font-size: .76em;
+}
+
 /* code */
 main.codeGame {
     background: black;

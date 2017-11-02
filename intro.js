@@ -2,6 +2,9 @@ let line1 = document.querySelector('.introP1');
 let line2 = document.querySelector('.introP2');
 let typingSound = document.querySelector('audio#typing');
 let phone = document.querySelector('img.phone');
+// let backgroundMusic = document.querySelector('audio#bgMusic');
+let phoneCall = document.querySelector('audio#phoneRing');
+
 window.onload = function(){
     setTimeout(showLine1, 1000);
 }
@@ -15,15 +18,19 @@ function typingSoundPlay() {
 }
 function showLine2(){
     line2.classList.add('type');
-    setTimeout(blinkPhone, 5000);
+    setTimeout(phoneRing, 9850);
+    setTimeout(blinkPhone, 10000);
+}
+function phoneRing(){
+    backgroundMusic.pause();
+    phoneCall.play();
+    phoneCall.playbackRate = 1.1;
 }
 function blinkPhone(){
     phone.classList.add('blink');
     // phone ring audio
-    window.addEventListener('keyup', pickUpPhone);
+    phone.addEventListener('click', pickUpPhone);
 }
 function pickUpPhone(e) {
-    if(e.keyCode == 32){
-        window.location.replace('http://onestepfurther.science/kea/02-animation/strangelove/map.html');
-    }
+    window.location ='http://onestepfurther.science/kea/02-animation/strangelove/map.html';
 }
