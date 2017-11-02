@@ -140,11 +140,9 @@ function timer(){
         }
         if ((startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) && state){
             planeAudio.pause();
-            planeAudio.pause();
             redirectToStatic();
         }
         if ((startTime[0] == 0 && startTime[1] == 0 && startTime[2] == 0) && !state) {
-            planeAudio.pause();
             planeAudio.pause();
             redirectToStaticLose();
         }
@@ -183,8 +181,12 @@ window.onload= function(){
         }
         if (fail >= 3){
             heart1.style.display = "none";
+            pilot.style.display = "none";
+            bomb.style.display = "none";
             clearInterval(timerRunDown);
             clearTimeout(moveBomb);
+            alarmAudio.pause();
+            planeAudio.pause();
             timeToDisplay.classList.remove('flash');
             setTimeout(redirectToStaticLose, 2500);
         }

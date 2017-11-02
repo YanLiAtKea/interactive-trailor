@@ -876,11 +876,11 @@ body.pilot h1 {
     }
 }
 @keyframes fallLeft {
-    0% {
+    0%, 50% {
         transform: rotate(0) translate(0,0);
         animation-timing-function: ease-out;
     }
-    50% {
+    75% {
         transform: rotateZ(-150deg) translate(-30vh, -30vh);
         transform-origin: bottom left;
     }
@@ -890,11 +890,11 @@ body.pilot h1 {
     }
 }
 @keyframes fallRight {
-    0% {
+    0%, 50% {
         transform: rotate(0) translate(0,0);
         animation-timing-function: ease-out;
     }
-    50% {
+    75% {
         transform: rotateZ(150deg) translate(10vh, -10vh);
         transform-origin: bottom right;
     }
@@ -904,22 +904,22 @@ body.pilot h1 {
     }
 }
 @keyframes fallForward {
-    0% {
+    0%, 50% {
         transform: rotateX(0deg);
         transform-origin: center;
     }
-    50%, 100% {
+    100% {
         transform: rotateX(-90deg) scale(2);
         transform-origin: center;
         opacity: 0;
     }
 }
 @keyframes fallBackward {
-    0% {
+    0%, 50% {
         transform: rotateX(0deg);
         transform-origin: center;
     }
-    50%, 100% {
+    100% {
         transform: rotateX(90deg) scale(.5);
         transform-origin: center;
         opacity: 0;
@@ -1085,11 +1085,4 @@ body.pilot h1 {
 #pilotOnBomb.leanForwardDefaultFall {
     animation: fallBackward 1s 1.23s forwards;
     transform-origin: bottom;
-}
-
-/* presentation*/
-body.presentation {
-    background-image: url(images/presentation/9.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
 }
