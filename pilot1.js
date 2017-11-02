@@ -1,3 +1,4 @@
+let demo = document.querySelector('.demo');
 let planeAudio = document.querySelector('audio#planes');
 let alarmAudio = document.querySelector('audio#alarm');
 let heart1 = document.querySelector('#heart1');
@@ -73,24 +74,24 @@ function moveBomb(){
                 let keyIndex = allKeys.indexOf(keyPressed);
                 let classIndex = classes.indexOf(newBombClass);
                 if (currentTime <= 6000){
-                    if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 200)){ // class change is before animation starts; animation self has 1s delay, so as long as user react within 2s is ok
+                    if ((keyIndex == classIndex)&&(pressKeyTime - currentTime < 170)){ // class change is before animation starts; animation self has 1s delay, so as long as user react within 2s is ok
                         state = true;
                         pilot.className = newBombClass;
                         window.removeEventListener('keydown', checkUser);
                         generateRandomMovement();
-                    } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime < 200)){
+                    } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime < 170)){
                         state = false;
                         fail++;
                         console.log('stage1; wrong key; fail: ' + fail);
                         window.removeEventListener('keydown', checkUser);
                         generateRandomMovement();
-                    } else if ((keyIndex == classIndex)&&(pressKeyTime - currentTime >= 200)) {
+                    } else if ((keyIndex == classIndex)&&(pressKeyTime - currentTime >= 170)) {
                         state = false;
                         fail++;
                         console.log('stage1; too late; fail: ' + fail);
                         window.removeEventListener('keydown', checkUser);
                         generateRandomMovement();
-                    } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime >= 200)){
+                    } else if ((keyIndex != classIndex)&&(pressKeyTime - currentTime >= 170)){
                         state = false;
                         fail++;
                         console.log('stage1; both wrong; fail: ' + fail);
@@ -107,7 +108,6 @@ function moveBomb(){
         moveBomb(); // get a new class, avoid the case that no change in class hence no movement displayed
     }
 }
-
 // timer runs
 function timer(){
     function addZero(num){
@@ -146,6 +146,23 @@ function timer(){
 }
 
 window.onload= function(){
+    // demo starts with left/right, after 3s show lean
+    setTimeout(demoLean, 3700);
+    function demoLean(){
+        pilot.className = "lean";
+        bomb.className = "lean";
+        setTimeout(startGame, 3700);
+    }
+    function startGame(){
+        pilot.className = "";
+        bomb.className = "";
+        demo.textContent = "GO!";
+        setTimeout(hideDemo, 500);
+        function hideDemo(){
+            demo.style.display = "none";
+        }
+        setTimeout(runGame, 1500);
+        function runGame(){
     // timer running
     let timerRunDown = setInterval(timer, 10);
     // start game with a random timeout for bomb class
@@ -160,7 +177,12 @@ window.onload= function(){
             heart2.style.display = "none";
         }
         if (fail >= 3){
+            clearInterval(timerRunDown);
+            timeToDisplay.classList.remove('flash');
             redirectToStaticLose();
+        }
+    }
+
         }
     }
 }

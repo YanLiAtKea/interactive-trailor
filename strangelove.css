@@ -740,6 +740,15 @@ div.restart {
     padding-top: 37px;
     font-size: 4em;
 }
+/* pilot */
+div.demo {
+    font-size: 7em;
+    font-weight: bolder;
+    color: white;
+    position: fixed;
+    top: 30vh;
+    left: 30vh;
+}
 div.hearts {
     width: 20vw;
     position: absolute;
@@ -750,32 +759,6 @@ div.hearts img {
     width: 5vw;
     margin-left: 1vw;
     filter: grayscale(70%);
-}
-div.timerDiv {
-    height: 2em;
-    width: 7em;
-    position: absolute;
-    top: 0;
-    right: 0;
-    text-align: center;
-    padding-top: .6em;
-    color: white;
-    font-size: 6em;
-    z-index: 3;
-    pointer-events: none;
-}
-div.timerDiv.flash {
-    animation: timerFlash 1s infinite;
-}
-@keyframes timerFlash {
-    0%, 100% {
-        background-color: transparent;
-        opacity: 0;
-    }
-    50% {
-        background-color: red;
-        opacity: .5;
-    }
 }
 body.pilot {
     width: 100vw;
