@@ -269,11 +269,11 @@ div.finishedConversation {
     color: white;
     padding-left: .5vw;
 }
-/*
 div.finishedConversation p {
     color: white;
-    font-size: 3em;
-}*/
+    margin-top: 1em;
+    margin-left: .5em;
+}
 div.choices {
     height: 43vh;
     width: 96%;
@@ -300,8 +300,8 @@ div.choices p {
     font-size: 1em;
 
 }
-div.choices~p {
-    line-height: 2em;
+div.choices p.topic {
+    line-height: 3em;
 }
 div.choices button {
     position: absolute;
@@ -311,7 +311,6 @@ div.choices button {
     height: 30px;
     font-family: monospace bold;
     font-size: .6em;
-
 }
 .hide {
     display: none;
