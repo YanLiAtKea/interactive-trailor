@@ -263,7 +263,7 @@ window.onload = function(){
                         setTimeout(hintGone, 2000);
                     } else if (planeNr == 1){
                         clearInterval(changePositionInt3);
-                        changePositionint4 = setInterval(changePosition, 700);
+                        changePositionint4 = setInterval(changePosition, 800);
                         hintPlane.textContent = '3 down, finish the last one';
                         planeLeft.textContent = "3/4";
                         setTimeout(hintGone, 2000);

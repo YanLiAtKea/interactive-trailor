@@ -1,26 +1,28 @@
 let line1 = document.querySelector('.introP1');
 let line2 = document.querySelector('.introP2');
 let typingSound = document.querySelector('audio#typing');
+let typingSound2 = document.querySelector('audio#typing2');
 let phone = document.querySelector('img.phone');
 // let backgroundMusic = document.querySelector('audio#bgMusic');
 let phoneCall = document.querySelector('audio#phoneRing');
 let answer = document.querySelector('.pickup');
-
+let typing;
 window.onload = function(){
     setTimeout(showLine1, 1000);
 }
 function showLine1(){
     line1.classList.add('type');
-    typingSoundPlay();
     line1.addEventListener('animationend', showLine2);
+    typingSoundPlay();
 }
 function typingSoundPlay() {
     typingSound.play();
 }
 function showLine2(){
     line2.classList.add('type');
-    setTimeout(phoneRing, 4950);
-    setTimeout(blinkPhone, 5000);
+    typingSound2.play();
+    setTimeout(phoneRing, 5150);
+    setTimeout(blinkPhone, 5200);
 }
 function phoneRing(){
     phoneCall.play();

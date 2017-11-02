@@ -37,7 +37,7 @@ div.introDiv p.type{
 }
 div.introDiv p.introP1.type {
     display: inherit;
-    animation: introP1TypingEffect 1s steps(6);
+    animation: introP1TypingEffect 1.5s steps(6);
     width: 6ch;
 }
 @keyframes introP1TypingEffect {
