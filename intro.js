@@ -18,13 +18,13 @@ function typingSoundPlay() {
 }
 function showLine2(){
     line2.classList.add('type');
-    setTimeout(phoneRing, 9850);
-    setTimeout(blinkPhone, 10000);
+    setTimeout(phoneRing, 7950);
+    setTimeout(blinkPhone, 8000);
 }
 function phoneRing(){
-    backgroundMusic.pause();
+//    backgroundMusic.pause();
     phoneCall.play();
-    phoneCall.playbackRate = 1.1;
+    phoneCall.playbackRate = 1.21;
 }
 function blinkPhone(){
     phone.classList.add('blink');
@@ -32,5 +32,5 @@ function blinkPhone(){
     phone.addEventListener('click', pickUpPhone);
 }
 function pickUpPhone(e) {
-    window.location ='http://onestepfurther.science/kea/02-animation/strangelove/map.html';
+    window.location ='http://onestepfurther.science/kea/02-animation/strangelove/intro_video.html';
 }

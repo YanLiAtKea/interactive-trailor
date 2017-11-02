@@ -89,6 +89,13 @@ div.map {
     background-image: url(images/world-map-default.png);
     background-size: cover;
 }
+div.map h1 {
+    position: absolute;
+    bottom: 13vh;
+    font-size: 3em;
+    color: #777;
+    margin-left: 27vw;
+}
 /* characters*/
 div.taskDes {
     padding: 3em;
@@ -290,6 +297,7 @@ div.choices li {
     color: white;
     cursor: pointer;
     margin-left: 1em;
+    margin-bottom: .7em;
 }
 div.script {
     width: 100%;
@@ -297,8 +305,7 @@ div.script {
 }
 div.choices p {
     color: white;
-    font-size: 1em;
-
+    font-size: 1.3em;
 }
 div.choices p.topic {
     line-height: 3em;
@@ -335,8 +342,9 @@ body.conversation .hint {
     background-color: black;
 }
 
-.tip {
+#tip {
     font-size: .76em;
+    opacity: .9;
 }
 
 /* code */

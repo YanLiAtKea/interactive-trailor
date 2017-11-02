@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro</title>
+    <link rel="stylesheet" href="strangelove.css">
+    <style>
+        body{background-color:black;}
+        video {
+            position: fixed;
+        }
+
+        div {
+            position: absolute;
+            top: 90vh;
+            left: 10vw;
+            width: 130vw;
+            height: 60px;
+            background: none;
+            color: white;
+            font-size: 2em;
+        }
+        .overlap {position:absolute;
+        bottom:-30vh;
+        left:10vw;}
+    div p.hide {
+            display: none;
+        }
+        div p {
+            overflow: hidden;
+            white-space: nowrap;
+            display: inherit;
+        }
+
+        .intro1 {
+            display: inherit;
+            animation: intro1TypingEffect .5s 1s steps(10) forwards;
+            width: 0ch;
+        }
+
+        @keyframes intro1TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 10ch;
+            }
+        }
+
+
+
+        .intro2 {
+            display: inherit;
+            animation: intro2TypingEffect 3.5s 2.2s steps(60) forwards;
+            width: 0ch;
+        }
+         @keyframes intro2TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 60ch;
+            }
+        }
+
+        .intro3 {
+            display: inherit;
+            animation: intro3TypingEffect 3.6s steps(66) forwards;
+            width: 0ch;
+        }
+         @keyframes intro3TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 66ch;
+            }
+        }
+        .intro4 {
+            display: inherit;
+            animation: intro4TypingEffect 5s  steps(63) forwards;
+            width: 0ch;
+        }
+         @keyframes intro4TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 63ch;
+            }
+        }
+        .intro5 {
+            display: inherit;
+            animation: intro5TypingEffect 1.8s 5s steps(37) forwards;
+            width: 0ch;
+        }
+         @keyframes intro5TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 37ch;
+            }
+        }
+        .intro6 {
+            display: inherit;
+            animation: intro6TypingEffect 3s .5s steps(75) forwards;
+            width: 0ch;
+        }
+         @keyframes intro6TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 75ch;
+            }
+        }
+        .intro7 {
+            display: inherit;
+            animation: intro7TypingEffect 2.5s 3.5s steps(43) forwards;
+            width: 0ch;
+        }
+         @keyframes intro7TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 43ch;
+            }
+        }
+        .intro8 {
+            display: inherit;
+            animation: intro8TypingEffect 3.5s  steps(80) forwards;
+            width: 0ch;
+        }
+         @keyframes intro8TypingEffect {
+            0% {
+                width: 0ch;
+
+            }
+            100% {
+                width: 80ch;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <video width="100%" height="100%" autoplay><source src="sound/intrro.mp4" type="video/mp4"></video>
+<div>
+        <p class="intro1">Greetings,</p>
+
+    <p class="intro2">The world is in danger, and we need your help to save it! </p></div>
+
+        <div class="overlap"><p class="hide">But before we get to your task, let me brief you on the situation.</p></div>
+    <div class="overlap"><p class="hide">US Air Force general Jack D. Ripper has gone rogue and ordered </p>
+        <p class="hide">a nuclear attack on the Soviet Union.</p></div>
+        <div class="overlap">  <p class="hide"> If any of his planes will reach Soviet Union, they will activate a Doomsday </p>
+            <p class="hide">Machine, that will destroy the whole world!</p></div>
+        <div class="overlap"><p class="hide"> We cannot reach any of Ripper’s men to stop the attack, but there is still hope.</p></div>
+
+    <script src="intro_video.js"></script>
+</body>
+
+</html>
