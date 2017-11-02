@@ -269,6 +269,7 @@ div.choices {
     background-color: black;
     margin: 5%;
     margin-bottom: 0;
+    cursor: pointer;
 }
 div.choices p {
     color: white;

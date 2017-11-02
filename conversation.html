@@ -1,10 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="strangelove.css">
+    <!-- <link rel="stylesheet" href="strangelove.css">-->
+    <style>
+        body {
+            font-family: monospace;
+        }
+
+        div.us {
+            width: 62vw;
+            position: fixed;
+            left: -1.9vw;
+            height: 100vh;
+            overflow: visible;
+        }
+
+        div.us img {
+            height: 73vh;
+            filter: grayscale(100);
+        }
+
+        div.usP {
+            position: absolute;
+            bottom: 0;
+            left: -2.5vw;
+        }
+
+        div.usP img {
+            width: 140%;
+            height: 65vh;
+        }
+
+        div.russia {
+            width: 40vw;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        div.russiaFlag img {
+            height: 100vh;
+            position: absolute;
+            top: 24vh;
+            left: 31vw;
+            transform: scale(1.7);
+        }
+
+        div.russiaP {
+            height: 80vh;
+            width: 30vw;
+            position: absolute;
+            bottom: 23vh;
+            left: 13vw;
+            z-index: 2;
+        }
+
+        div.russiaP img {
+            width: 67%;
+            position: absolute;
+            left: 30%;
+            bottom: 270px;
+        }
+
+        div.trigger {
+            width: 60%;
+            height: 30vh;
+            position: absolute;
+            bottom: -2vh;
+            right: 0;
+        }
+
+        div.trigger img {
+            width: 100%;
+        }
+
+        div.usFlag {
+            position: absolute;
+            top: -5.5vh;
+            left: -2vw;
+            height: 100%;
+        }
+
+        div.conversation {
+            width: 40vw;
+            height: 100vh;
+            position: fixed;
+            left: 39vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, .9);
+        }
+
+        div.finishedConversation {
+            height: 50vh;
+            width: 98%;
+            position: absolute;
+            top: 0vh;
+            overflow-y: scroll;
+            font-size: 1.5em;
+            color: white;
+            padding-left: .5vw;
+        }
+
+        div.choices {
+            height: 43vh;
+            width: 96%;
+            position: absolute;
+            bottom: 2vh;
+            background-color: black;
+            margin-bottom: 2vh;
+            font-size: 1.4em;
+            padding: 10px;
+            color: white;
+        }
+        div.choices li {
+            cursor: pointer;
+        }
+
+        div.script {
+            width: 100%;
+            height: 100%;
+        }
+
+        div.script p {
+            color: white;
+            left: 1em;
+        }
+
+        li {
+            list-style-type: circle;
+            color: white;
+        }
+
+
+
+        div.choices button {
+            position: absolute;
+            bottom: 0;
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            font-family: monospace bold;
+            font-size: .6em;
+
+        }
+
+
+        .hide {
+            display: none;
+        }
+
+        .hint {
+            position: absolute;
+            bottom: 0;
+            left: 6vw;
+            font-size: .8em;
+            color: white;
+            font-family: monospace;
+            z-index: 9;
+
+        }
+
+        .work {
+            position: absolute;
+            bottom: -8px;
+            left: 180px;
+            z-index: 99;
+            background-color: black;
+        }
+
+        .tip {
+            font-size: .76em;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -18,28 +192,52 @@
     </div>
     <div class="russia">
         <div class="russiaFlag">
-            <img src="images/Flag_of_the_Soviet_Union.png" alt="flag of the soviet union">
+            <img src="images/Light-russian-flag.jpg" alt="flag of the soviet union">
         </div>
         <div class="trigger">
             <img src="images/doomsday-button.png" alt="bomb trigger">
         </div>
         <div class="russiaP">
-            <img src="images/hand.png" alt="russian leader's hand">
+            <img src="images/hand-shadow.png" alt="russian leader's hand">
         </div>
     </div>
     <div class="conversation">
         <div class="finishedConversation">
         </div>
         <div class="choices">
-            <p>what would a real politician say</p>
-            <p class="topic">to start a conversation with the opposite side?</p>
+            <p class="topic"></p>
             <div class="script">
-                <p class="choice choice1">11111</p>
-                <p class="choice choice2">222222</p>
-                <p class="choice choice3">33333</p>
+                <ul>
+                    <li>
+                        <p class="choice choice1 rightChoice">Hello, hello Dimitri?</p>
+                    </li>
+                    <li>
+                        <p class="choice choice2 wrongChoice"> Good afternoon my dear Sir, this is US president Merkin Muffley speaking.</p>
+                    </li>
+                    <li>
+                        <p class="choice choice3 horribleChoice">Russian scum, I need to speak with you!</p>
+                    </li>
+                </ul>
+                <div class="work">
+                    <p class="tip hide">HINT: It's hard to hear the URSS leader on the other end</p>
+                </div>
             </div>
+            <button>?</button>
+            <p class="hint">Hints: 3/3</p>
         </div>
     </div>
+    <audio><source src="audios/1_hello-dimitri.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/2-wrong-bomb.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/3-silly-attack-country.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/4-why-calling-hello.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/5-i-like-to-call.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/6-not-reach-targets.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/7-we-give-info.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/8-help-destroy-planes.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/9-i-am-sorry.mp3" type="audio/mpeg"></audio>
+    <audio><source src="audios/10-both-sorry.mp3" type="audio/mpeg"></audio>
+    <audio loop><source src="audios/alarm2.mp3" type="audio/mpeg"></audio>
     <script src="conversation.js"></script>
 </body>
+
 </html>
