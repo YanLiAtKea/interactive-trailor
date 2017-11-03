@@ -832,13 +832,13 @@ div.restart {
 }
 /* pilot */
 div.demo {
-    font-size: 2.6em;
+    font-size: 2.5em;
     font-weight: bolder;
     color: white;
     position: fixed;
     top: 10vh;
-    left: 15vw;
-    width: 70vw;
+    left: 11vw;
+    width: 78vw;
 }
 div.hearts {
     width: 20vw;

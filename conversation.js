@@ -105,7 +105,7 @@ window.onload = function () {
             }
 
 
-            if (choice.classList.contains("rightChoice")) {
+            if (choice.classList.contains("rightChoice") && conversationCount !=11) { // so the last sentence, all rightchoice, doesn't play the 10th audio, which is the alarm
                 conversationSound[conversationCount-1].play();
             }
             if (conversationCount == 1) {

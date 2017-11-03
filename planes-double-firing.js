@@ -28,7 +28,7 @@ let plane7 = document.querySelector('.plane7');
 let planeNr = 4;
 let cockpit = document.querySelector('img#cockpit');
 // change position of the planes
-let changePositionInt1 = setInterval(changePosition, 1600);
+let changePositionInt1 = setInterval(changePosition, 1700);
 let changePositionInt2; // need to set these here to avoid "undefined" when clearInterval later in different scopes
 let changePositionInt3;
 let changePositionInt4;
@@ -251,7 +251,7 @@ window.onload = function(){
                     planeNr--;
                     if (planeNr == 3){
                         clearInterval(changePositionInt1); //need to clear so doesn't fire multiple times
-                        changePositionInt2 = setInterval(changePosition, 1400); // need to give a new id so can be cleared later
+                        changePositionInt2 = setInterval(changePosition, 1500); // need to give a new id so can be cleared later
                         hintPlane.textContent = '1 down, 3 to go';
                         planeLeft.textContent = "1/4";
                         setTimeout(hintGone, 2000);
@@ -263,11 +263,13 @@ window.onload = function(){
                         setTimeout(hintGone, 2000);
                     } else if (planeNr == 1){
                         clearInterval(changePositionInt3);
-                        changePositionint4 = setInterval(changePosition, 700);
+                        changePositionint4 = setInterval(changePosition, 800);
                         hintPlane.textContent = '3 down, finish the last one';
                         planeLeft.textContent = "3/4";
                         setTimeout(hintGone, 2000);
                     }  else if (planeNr ==0 && timeToDisplay.innerHTML[1] != 0) { // finished too fast, add extra planes
+                        clearInterval(changePositionInt4);
+                        changePositionint5 = setInterval(changePosition, 1100);
                         hintPlane.textContent = '4 down! WELL DONE! But 3 backup planes just joined the battle!';
                         planeLeft.textContent = "4/7";
                         setTimeout(hintGone, 4000);
@@ -276,8 +278,6 @@ window.onload = function(){
                             extraPlane.style.display = "inherit";
                         }
                     } else if (planeNr ==0 && timeToDisplay.innerHTML[1] == 0){
-                        clearInterval(changePositionInt4);
-                        changePositionint5 = setInterval(changePosition, 1100);
                         planeLeft.textContent = "4/4";
                         clearInterval(timerRunDown);
                         timeToDisplay.classList.remove('flash');
@@ -287,13 +287,13 @@ window.onload = function(){
                         setTimeout(redirectToStatic, 2500);
                     } else if (planeNr == -1){
                         clearInterval(changePositionInt5);
-                        changePositionint6 = setInterval(changePosition, 900);
+                        changePositionint6 = setInterval(changePosition, 950);
                         hintPlane.textContent = 'bonus 1 !';
                         planeLeft.textContent = "5/7";
                         setTimeout(hintGone, 2000);
                     } else if (planeNr == -2){
                         clearInterval(changePositionInt6);
-                        changePositionint7 = setInterval(changePosition, 700);
+                        changePositionint7 = setInterval(changePosition, 800);
                         hintPlane.textContent = 'bonus 2 !';
                         planeLeft.textContent = "6/7";
                         setTimeout(hintGone, 2000);
